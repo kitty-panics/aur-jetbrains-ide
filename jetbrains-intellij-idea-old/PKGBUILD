@@ -1,3 +1,5 @@
+# Maintainer: Kitty Panics
+
 pkgbase=jetbrains-intellij-idea
 pkgname=(${pkgbase}-old ${pkgbase}-jre-old)
 pkgver=2021.2.2
@@ -6,6 +8,7 @@ url="https://www.jetbrains.com/idea/download/other.html"
 pkgdesc="A cross-platform Java and Kotlin IDE by JetBrains."
 arch=('x86_64')
 license=('custom:jetbrains')
+depends=('giflib' 'glib2' 'libxtst')
 makedepends=('rsync')
 options=('!strip')
 _tar_gz="ideaIU-$pkgver.tar.gz"
@@ -15,7 +18,7 @@ source=("https://download.jetbrains.com/idea/${_tar_gz}"
         "${pkgbase}-old.install"
         "LICENSE")
 sha256sums=('36807af6a60a31590fb51f40a87c764007dae6866b05586ebb15d2d13933bde6'
-            'SKIP'
+            'd81ca59a080fd36636f021c3bd3afbde0549dd5ba2d384df40d190537e87f6df'
             'f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
 noextract=("${_tar_gz}")
@@ -32,7 +35,6 @@ package_jetbrains-intellij-idea-old() {
     conflicts=("${pkgname}")
     backup=("opt/${pkgname}/bin/idea.properties"
             "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
-    depends=('giflib' 'glib2' 'libxtst')
     optdepends=('jetbrains-intellij-idea-jre-old: JetBrains custom JRE (Recommended)'
                 'java-runtime:     JRE - Required if jetbrains-intellij-idea-jre-old is not installed'
                 'libdbusmenu-glib: For global menu support'

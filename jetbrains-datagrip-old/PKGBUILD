@@ -1,3 +1,5 @@
+# Maintainer: Kitty Panics
+
 pkgbase=jetbrains-datagrip
 pkgname=(${pkgbase}-old ${pkgbase}-jre-old)
 pkgver=2021.2.2
@@ -6,6 +8,7 @@ url="https://www.jetbrains.com/datagrip/download/other.html"
 pkgdesc="A cross-platform Databases IDE by JetBrains."
 arch=('x86_64')
 license=('custom:jetbrains')
+depends=('giflib' 'glib2' 'libxtst')
 makedepends=('rsync')
 options=('!strip')
 _tar_gz="datagrip-${pkgver}.tar.gz"
@@ -15,7 +18,7 @@ source=("https://download.jetbrains.com/datagrip/${_tar_gz}"
         "${pkgbase}-old.install"
         "LICENSE")
 sha256sums=('638b2c584a1b90d29e6ada829f8e3cdbfd3aad7afcd30b3a437d90b675adaaa1'
-            'SKIP'
+            'c41a04b79e6b57e62e0f2bd403af831c74d8959bd46a0f28e137c617918b332a'
             'f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
 noextract=("${_tar_gz}")
@@ -32,7 +35,6 @@ package_jetbrains-datagrip-old() {
     conflicts=("${pkgname}")
     backup=("opt/${pkgname}/bin/idea.properties"
             "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
-    depends=('giflib' 'glib2' 'libxtst')
     optdepends=('jetbrains-datagrip-jre-old: JetBrains custom Java Runtime (Recommended)'
                 'java-runtime:     JRE - Required if jetbrains-datagrip-jre-old is not installed'
                 'libdbusmenu-glib: For global menu support'

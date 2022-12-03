@@ -1,3 +1,5 @@
+# Maintainer: Kitty Panics
+
 pkgbase=jetbrains-rubymine
 pkgname=(${pkgbase} ${pkgbase}-jre)
 pkgver=2022.3
@@ -6,6 +8,7 @@ url="https://www.jetbrains.com/ruby/"
 pkgdesc="A cross-platform Ruby IDE by JetBrains."
 arch=('x86_64')
 license=('custom:jetbrains')
+depends=('giflib' 'glib2' 'libxtst' 'libxrender')
 makedepends=('rsync')
 options=('!strip')
 _tar_gz="RubyMine-${pkgver}.tar.gz"
@@ -15,7 +18,7 @@ source=("https://download.jetbrains.com/ruby/${_tar_gz}"
         "${pkgbase}.install"
         "LICENSE")
 sha256sums=('SKIP'
-            'SKIP'
+            '5c4b281bffd98adbe1e28716c23f8fcc6daf74378a2d79986ac41a043229b3b7'
             'f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
 noextract=("${_tar_gz}")
@@ -32,7 +35,6 @@ package_jetbrains-rubymine() {
     conflicts=("${pkgname}")
     backup=("opt/${pkgname}/bin/idea.properties"
             "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
-    depends=('giflib' 'glib2' 'libxtst' 'libxrender')
     optdepends=('jetbrains-rubymine-jre: JetBrains custom Java Runtime (Recommended)'
                 'java-runtime:     JRE - Required if jetbrains-rubymine-jre is not installed'
                 'libdbusmenu-glib: For global menu support'

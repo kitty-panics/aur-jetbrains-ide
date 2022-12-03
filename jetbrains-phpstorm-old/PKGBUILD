@@ -1,3 +1,5 @@
+# Maintainer: Kitty Panics
+
 pkgbase=jetbrains-phpstorm
 pkgname=(${pkgbase}-old ${pkgbase}-jre-old)
 pkgver=2021.2.2
@@ -6,6 +8,7 @@ url="https://www.jetbrains.com/phpstorm/download/other.html"
 pkgdesc="A cross-platform PHP IDE by JetBrains."
 arch=('x86_64')
 license=('custom:jetbrains')
+depends=('giflib' 'glib2' 'libxtst')
 makedepends=('rsync')
 options=('!strip')
 _tar_gz="PhpStorm-${pkgver}.tar.gz"
@@ -15,7 +18,7 @@ source=("https://download.jetbrains.com/webide/${_tar_gz}"
         "${pkgbase}-old.install"
         "LICENSE")
 sha256sums=('e05ff409406f23fa29c585d9096c6ff665760e1a57edbd73b8268916d368941a'
-            'SKIP'
+            'bf645fb25b3ad0f1d6da803b04ebb2f30085aa5192afea8d4f304ded306db894'
             'f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
 noextract=("${_tar_gz}")
@@ -32,7 +35,6 @@ package_jetbrains-phpstorm-old() {
     conflicts=("${pkgname}")
     backup=("opt/${pkgname}/bin/idea.properties"
             "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
-    depends=('giflib' 'glib2' 'libxtst')
     optdepends=('jetbrains-phpstorm-jre-old: JetBrains custom Java Runtime (Recommended)'
                 'java-runtime:     JRE - Required if jetbrains-phpstorm-jre-old is not installed'
                 'libdbusmenu-glib: For global menu support'

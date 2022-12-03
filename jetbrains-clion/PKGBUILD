@@ -1,3 +1,5 @@
+# Maintainer: Kitty Panics
+
 pkgbase=jetbrains-clion
 pkgname=(${pkgbase} ${pkgbase}-jre ${pkgbase}-clang ${pkgbase}-cmake ${pkgbase}-gdb ${pkgbase}-lldb)
 pkgver=2022.3
@@ -6,6 +8,7 @@ url="https://www.jetbrains.com/clion/"
 pkgdesc="A cross-platform C and C++ IDE by JetBrains."
 arch=('x86_64')
 license=('custom:jetbrains')
+depends=('giflib' 'glib2' 'libxtst' 'libxrender')
 makedepends=('rsync')
 options=('!strip')
 _tar_gz="CLion-${pkgver}.tar.gz"
@@ -15,7 +18,7 @@ source=("https://download.jetbrains.com/cpp/${_tar_gz}"
         "${pkgbase}.install"
         "LICENSE")
 sha256sums=('SKIP'
-            'SKIP'
+            '74c7c4c169cac9547b4e7c58c56e2c0f690a37bc2d582735f0cf68b8235875a6'
             'f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
 noextract=("${_tar_gz}")
@@ -32,7 +35,6 @@ package_jetbrains-clion() {
     conflicts=("${pkgname}")
     backup=("opt/${pkgname}/bin/idea.properties"
             "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
-    depends=('giflib' 'glib2' 'libxtst' 'libxrender')
     optdepends=('jetbrains-clion-jre:   JetBrains custom Java Runtime (Recommended)'
                 'jetbrains-clion-clang: JetBrains packaged LLVM compiler'
                 'jetbrains-clion-cmake: JetBrains packaged CMake build system'
