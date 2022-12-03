@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=JetBrains DataGrip (old)
+Icon=jetbrains-datagrip-old
+Exec=jetbrains-datagrip-old %f
+Comment=A cross-platform Databases IDE by JetBrains
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-datagrip-old

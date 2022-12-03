@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=JetBrains IntelliJ IDEA (old)
+Icon=jetbrains-intellij-idea-old
+Exec=jetbrains-intellij-idea-old %f
+Comment=A cross-platform Java and Kotlin IDE by JetBrains
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-intellij-idea-old

@@ -1,0 +1,139 @@
+pkgbase=jetbrains-clion
+pkgname=(${pkgbase}-old ${pkgbase}-jre-old ${pkgbase}-clang-old ${pkgbase}-cmake-old ${pkgbase}-gdb-old ${pkgbase}-lldb-old)
+pkgver=2021.2.2
+pkgrel=1
+url="https://www.jetbrains.com/clion/download/other.html"
+pkgdesc="A cross-platform C and C++ IDE by JetBrains."
+arch=('x86_64')
+license=('custom:jetbrains')
+makedepends=('rsync')
+options=('!strip')
+_tar_gz="CLion-${pkgver}.tar.gz"
+install="${pkgbase}-old.install"
+source=("https://download.jetbrains.com/cpp/${_tar_gz}"
+        "${pkgbase}-old.desktop"
+        "${pkgbase}-old.install"
+        "LICENSE")
+sha256sums=('70c6f969c10d2afd09f0793bb0890260cdc388bce11d5f629b07233ee28e2f61'
+            'SKIP'
+            'f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a'
+            'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
+noextract=("${_tar_gz}")
+
+prepare() {
+    rm -rf "${srcdir}/opt"
+    mkdir -p "${srcdir}/opt/${pkgbase}-old"
+    bsdtar --strip-components 1 -x -f "${_tar_gz}" \
+                                   -C "${srcdir}/opt/${pkgbase}-old"
+}
+
+package_jetbrains-clion-old() {
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+    backup=("opt/${pkgname}/bin/idea.properties"
+            "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
+    depends=('giflib' 'glib2' 'libxtst')
+    optdepends=('jetbrains-clion-jre-old:   JetBrains custom Java Runtime (Recommended)'
+                'jetbrains-clion-clang-old: JetBrains packaged LLVM compiler'
+                'jetbrains-clion-cmake-old: JetBrains packaged CMake build system'
+                'jetbrains-clion-gdb-old:   JetBrains packaged GNU debugger'
+                'jetbrains-clion-lldb-old:  JetBrains packaged LLVM debugger'
+                'java-runtime:     JRE - Required if jetbrains-clion-jre-old is not installed'
+                'libdbusmenu-glib: For global menu support'
+                'gnome-keyring:    Save login/deployment credentials safely'
+                'java-openjfx:     Rendering Markdown files'
+                'cmake:            Build system - Required if jetbrains-clion-cmake-old is not installed'
+                'gdb:              GNU debugger - Required if jetbrains-clion-gdb-old is not installed'
+                'lldb:             LLVM debugger - Required if jetbrains-clion-lldb-old is not installed'
+                'gcc:              GNU compiler'
+                'clang:            LLVM compiler'
+                'biicode:          C/C++ dependency manager'
+                'gtest:            C++ testing'
+                'swift-language:   Swift programming language support (Also requires the plugin)'
+                'doxygen:          Code documentation generation')
+
+    # create dir
+    install -dm755 "${pkgdir}"/opt/
+    install -dm755 "${pkgdir}"/usr/bin/
+    install -dm755 "${pkgdir}"/usr/share/applications/
+    install -dm755 "${pkgdir}"/usr/share/icons/hicolor/"{128x128,scalable}"/apps/
+    install -dm755 "${pkgdir}"/usr/share/pixmaps/
+    install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"/
+
+    # package files
+    rsync -rtl "${srcdir}/opt" "${pkgdir}" \
+          --exclude=/opt/${pkgname}/jbr \
+          --exclude=/opt/${pkgname}/bin/clang \
+          --exclude=/opt/${pkgname}/bin/cmake \
+          --exclude=/opt/${pkgname}/bin/gdb \
+          --exclude=/opt/${pkgname}/bin/lldb
+    # /usr/bin/
+    ln -s "/opt/${pkgname}/bin/${pkgbase##*-}.sh" \
+          "${pkgdir}/usr/bin/${pkgname}"
+
+    # applications
+    install -Dm644 "${srcdir}/${pkgname}.desktop" \
+                   "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+    # icons/hicolor
+    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.png" \
+                   "$pkgdir/usr/share/icons/hicolor/128x128/apps/${pkgname}.png"
+    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.svg" \
+                   "$pkgdir/usr/share/icons/hicolor/scalable/apps/${pkgname}.svg"
+    # pixmaps
+    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.svg" \
+                   "${pkgdir}/usr/share/pixmaps/${pkgname}.svg"
+    # licenses
+    install -Dm644 "${srcdir}/LICENSE" \
+                   "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
+
+package_jetbrains-clion-jre-old() {
+    pkgdesc='JetBrains Runtime (JBR) for CLion - a patched JRE'
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+
+    # create dir
+    install -dm755 "${pkgdir}/opt/${pkgbase}-old/"
+    # package files
+    rsync -rtl "${srcdir}/opt/${pkgbase}-old/jbr" "${pkgdir}/opt/${pkgbase}-old"
+}
+
+package_jetbrains-clion-clang-old() {
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+
+    # create dir
+    install -dm755 "${pkgdir}/opt/${pkgbase}-old/bin/"
+    # package files
+    rsync -rtl "${srcdir}/opt/${pkgbase}-old/bin/clang" "${pkgdir}/opt/${pkgbase}-old/bin"
+}
+
+package_jetbrains-clion-cmake-old() {
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+
+    # create dir
+    install -dm755 "${pkgdir}/opt/${pkgbase}-old/bin/"
+    # package files
+    rsync -rtl "${srcdir}/opt/${pkgbase}-old/bin/cmake" "${pkgdir}/opt/${pkgbase}-old/bin"
+}
+
+package_jetbrains-clion-gdb-old() {
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+
+    # create dir
+    install -dm755 "${pkgdir}/opt/${pkgbase}-old/bin/"
+    # package files
+    rsync -rtl "${srcdir}/opt/${pkgbase}-old/bin/gdb" "${pkgdir}/opt/${pkgbase}-old/bin"
+}
+
+package_jetbrains-clion-lldb-old() {
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+
+    # create dir
+    install -dm755 "${pkgdir}/opt/${pkgbase}-old/bin/"
+    # package files
+    rsync -rtl "${srcdir}/opt/${pkgbase}-old/bin/lldb" "${pkgdir}/opt/${pkgbase}-old/bin"
+}

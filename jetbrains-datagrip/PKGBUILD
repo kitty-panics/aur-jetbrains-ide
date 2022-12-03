@@ -1,0 +1,85 @@
+pkgbase=jetbrains-datagrip
+pkgname=(${pkgbase} ${pkgbase}-jre)
+pkgver=2022.3
+pkgrel=1
+url="https://www.jetbrains.com/datagrip/"
+pkgdesc="A cross-platform Databases IDE by JetBrains."
+arch=('x86_64')
+license=('custom:jetbrains')
+makedepends=('rsync')
+options=('!strip')
+_tar_gz="datagrip-${pkgver}.tar.gz"
+install="${pkgbase}.install"
+source=("https://download.jetbrains.com/datagrip/${_tar_gz}"
+        "${pkgbase}.desktop"
+        "${pkgbase}.install"
+        "LICENSE")
+sha256sums=('SKIP'
+            'SKIP'
+            'f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a'
+            'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
+noextract=("${_tar_gz}")
+
+prepare() {
+    rm -rf "${srcdir}/opt"
+    mkdir -p "${srcdir}/opt/${pkgbase}"
+    bsdtar --strip-components 1 -x -f "${_tar_gz}" \
+                                   -C "${srcdir}/opt/${pkgbase}"
+}
+
+package_jetbrains-datagrip() {
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+    backup=("opt/${pkgname}/bin/idea.properties"
+            "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
+    depends=('giflib' 'glib2' 'libxtst' 'libxrender')
+    optdepends=('jetbrains-datagrip-jre: JetBrains custom Java Runtime (Recommended)'
+                'java-runtime:     JRE - Required if jetbrains-datagrip-jre is not installed'
+                'libdbusmenu-glib: For global menu support'
+                'gnome-keyring:    Save login/deployment credentials safely'
+                'java-openjfx:     Rendering Markdown files'
+                'mariadb:          Fast SQL database server,'
+                'postgresql: 	   Sophisticated object-relational DBMS'
+                'sqlite:           A C library that implements an SQL database engine')
+
+    # create dir
+    install -dm755 "${pkgdir}"/opt/
+    install -dm755 "${pkgdir}"/usr/bin/
+    install -dm755 "${pkgdir}"/usr/share/applications/
+    install -dm755 "${pkgdir}"/usr/share/icons/hicolor/"{128x128,scalable}"/apps/
+    install -dm755 "${pkgdir}"/usr/share/pixmaps/
+    install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"/
+
+    # package files
+    rsync -rtl "${srcdir}/opt" "${pkgdir}" \
+          --exclude=/opt/${pkgname}/jbr \
+    # /usr/bin/
+    ln -s "/opt/${pkgname}/bin/${pkgbase##*-}.sh" \
+          "${pkgdir}/usr/bin/${pkgname}"
+
+    # applications
+    install -Dm644 "${srcdir}/${pkgname}.desktop" \
+                   "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+    # icons/hicolor
+    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.png" \
+                   "$pkgdir/usr/share/icons/hicolor/128x128/apps/${pkgname}.png"
+    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.svg" \
+                   "$pkgdir/usr/share/icons/hicolor/scalable/apps/${pkgname}.svg"
+    # pixmaps
+    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.svg" \
+                   "${pkgdir}/usr/share/pixmaps/${pkgname}.svg"
+    # licenses
+    install -Dm644 "${srcdir}/LICENSE" \
+                   "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
+
+package_jetbrains-datagrip-jre() {
+    pkgdesc='JetBrains Runtime (JBR) for DataGrip - a patched JRE'
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+
+    # create dir
+    install -dm755 "${pkgdir}/opt/${pkgbase}/"
+    # package files
+    rsync -rtl "${srcdir}/opt/${pkgbase}/jbr" "${pkgdir}/opt/${pkgbase}"
+}

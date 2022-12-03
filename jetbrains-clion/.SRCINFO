@@ -1,0 +1,68 @@
+pkgbase = jetbrains-clion
+	pkgdesc = A cross-platform C and C++ IDE by JetBrains.
+	pkgver = 2022.3
+	pkgrel = 1
+	url = https://www.jetbrains.com/clion/
+	install = jetbrains-clion.install
+	arch = x86_64
+	license = custom:jetbrains
+	makedepends = rsync
+	noextract = CLion-2022.3.tar.gz
+	options = !strip
+	source = https://download.jetbrains.com/cpp/CLion-2022.3.tar.gz
+	source = jetbrains-clion.desktop
+	source = jetbrains-clion.install
+	source = LICENSE
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a
+	sha256sums = c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1
+
+pkgname = jetbrains-clion
+	depends = giflib
+	depends = glib2
+	depends = libxtst
+	depends = libxrender
+	optdepends = jetbrains-clion-jre: JetBrains custom Java Runtime (Recommended)
+	optdepends = jetbrains-clion-clang: JetBrains packaged LLVM compiler
+	optdepends = jetbrains-clion-cmake: JetBrains packaged CMake build system
+	optdepends = jetbrains-clion-gdb: JetBrains packaged GNU debugger
+	optdepends = jetbrains-clion-lldb: JetBrains packaged LLVM debugger
+	optdepends = java-runtime: JRE - Required if jetbrains-clion-jre is not installed
+	optdepends = libdbusmenu-glib: For global menu support
+	optdepends = gnome-keyring: Save login/deployment credentials safely
+	optdepends = java-openjfx: Rendering Markdown files
+	optdepends = cmake: Build system - Required if jetbrains-clion-cmake is not installed
+	optdepends = gdb: GNU debugger - Required if jetbrains-clion-gdb is not installed
+	optdepends = lldb: LLVM debugger - Required if jetbrains-clion-lldb is not installed
+	optdepends = gcc: GNU compiler
+	optdepends = clang: LLVM compiler
+	optdepends = biicode: C/C++ dependency manager
+	optdepends = gtest: C++ testing
+	optdepends = swift-language: Swift programming language support (Also requires the plugin)
+	optdepends = doxygen: Code documentation generation
+	provides = jetbrains-clion
+	conflicts = jetbrains-clion
+	backup = opt/jetbrains-clion/bin/idea.properties
+	backup = opt/jetbrains-clion/bin/clion64.vmoptions
+
+pkgname = jetbrains-clion-jre
+	pkgdesc = JetBrains Runtime (JBR) for CLion - a patched JRE
+	provides = jetbrains-clion-jre
+	conflicts = jetbrains-clion-jre
+
+pkgname = jetbrains-clion-clang
+	provides = jetbrains-clion-clang
+	conflicts = jetbrains-clion-clang
+
+pkgname = jetbrains-clion-cmake
+	provides = jetbrains-clion-cmake
+	conflicts = jetbrains-clion-cmake
+
+pkgname = jetbrains-clion-gdb
+	provides = jetbrains-clion-gdb
+	conflicts = jetbrains-clion-gdb
+
+pkgname = jetbrains-clion-lldb
+	provides = jetbrains-clion-lldb
+	conflicts = jetbrains-clion-lldb

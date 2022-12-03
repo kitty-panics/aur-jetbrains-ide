@@ -1,0 +1,92 @@
+pkgbase=jetbrains-intellij-idea
+pkgname=(${pkgbase} ${pkgbase}-jre)
+pkgver=2022.3
+pkgrel=1
+url="https://www.jetbrains.com/idea/"
+pkgdesc="A cross-platform Java and Kotlin IDE by JetBrains."
+arch=('x86_64')
+license=('custom:jetbrains')
+makedepends=('rsync')
+options=('!strip')
+_tar_gz="ideaIU-$pkgver.tar.gz"
+install="${pkgbase}.install"
+source=("https://download.jetbrains.com/idea/${_tar_gz}"
+        "${pkgbase}.desktop"
+        "${pkgbase}.install"
+        "LICENSE")
+sha256sums=('SKIP'
+            'SKIP'
+            'f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a'
+            'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
+noextract=("${_tar_gz}")
+
+prepare() {
+    rm -rf "${srcdir}/opt"
+    mkdir -p "${srcdir}/opt/${pkgbase}"
+    bsdtar --strip-components 1 -x -f "${_tar_gz}" \
+                                   -C "${srcdir}/opt/${pkgbase}"
+}
+
+package_jetbrains-intellij-idea() {
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+    backup=("opt/${pkgname}/bin/idea.properties"
+            "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
+    depends=('giflib' 'glib2' 'libxtst' 'libxrender')
+    optdepends=('jetbrains-intellij-idea-jre: JetBrains custom JRE (Recommended)'
+                'java-runtime:     JRE - Required if jetbrains-intellij-idea-jre is not installed'
+                'libdbusmenu-glib: For global menu support'
+                'gnome-keyring:    Save login/deployment credentials safely'
+                'java-openjfx:     Rendering Markdown files'
+                'ant:              Build system'
+                'gradle:           Build system'
+                'maven:            Build system')
+
+    # create dir
+    install -dm755 "${pkgdir}"/opt/
+    install -dm755 "${pkgdir}"/usr/bin/
+    install -dm755 "${pkgdir}"/usr/share/applications/
+    install -dm755 "${pkgdir}"/usr/share/icons/hicolor/"{128x128,scalable}"/apps/
+    install -dm755 "${pkgdir}"/usr/share/pixmaps/
+    install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"/
+
+    # package files
+    rsync -rtl "${srcdir}/opt" "${pkgdir}" \
+          --exclude=/opt/${pkgname}/jbr \
+    # /usr/bin/
+    ln -s "/opt/${pkgname}/bin/${pkgbase##*-}.sh" \
+          "${pkgdir}/usr/bin/${pkgname}"
+
+    # applications
+    install -Dm644 "${srcdir}/${pkgname}.desktop" \
+                   "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+    # icons/hicolor
+    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.png" \
+                   "$pkgdir/usr/share/icons/hicolor/128x128/apps/${pkgname}.png"
+    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.svg" \
+                   "$pkgdir/usr/share/icons/hicolor/scalable/apps/${pkgname}.svg"
+    # pixmaps
+    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.svg" \
+                   "${pkgdir}/usr/share/pixmaps/${pkgname}.svg"
+    # licenses
+    install -Dm644 "${srcdir}/LICENSE" \
+                   "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+
+    # fix bugs:
+    #
+    # https://youtrack.jetbrains.com/issue/IDEA-185828
+    chmod +x "${pkgdir}/opt/${pkgname}/plugins/maven/lib/maven3/bin/mvn"
+    # https://bugs.archlinux.org/task/40934
+    #sed -i 's/lcd/on/' "${pkgdir}"/opt/${pkgname}/bin/*.vmoptions
+}
+
+package_jetbrains-intellij-idea-jre() {
+    pkgdesc='JetBrains Runtime (JBR) for IntelliJ IDEA - a patched JRE'
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+
+    # create dir
+    install -dm755 "${pkgdir}/opt/${pkgbase}/"
+    # package files
+    rsync -rtl "${srcdir}/opt/${pkgbase}/jbr" "${pkgdir}/opt/${pkgbase}"
+}

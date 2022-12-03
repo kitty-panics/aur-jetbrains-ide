@@ -1,0 +1,108 @@
+pkgbase=jetbrains-pycharm
+pkgname=(${pkgbase} ${pkgbase}-jre)
+pkgver=2022.3
+pkgrel=1
+url="https://www.jetbrains.com/pycharm/"
+pkgdesc="A cross-platform Python IDE by JetBrains."
+arch=('x86_64')
+license=('custom:jetbrains')
+makedepends=('rsync' 'cython' 'python-setuptools')
+#options=('!strip')
+_tar_gz="pycharm-professional-${pkgver}.tar.gz"
+install="${pkgbase}.install"
+source=("https://download.jetbrains.com/python/${_tar_gz}"
+        "${pkgbase}.desktop"
+        "${pkgbase}.install"
+        "LICENSE")
+sha256sums=('SKIP'
+            'SKIP'
+            'f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a'
+            'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
+noextract=("${_tar_gz}")
+
+prepare() {
+    rm -rf "${srcdir}/opt"
+    mkdir -p "${srcdir}/opt/${pkgbase}"
+    bsdtar --strip-components 1 -x -f "${_tar_gz}" \
+                                   -C "${srcdir}/opt/${pkgbase}"
+}
+
+build() {
+    # clean up and compile PyDev debugger used by PyCharm to speedup debugging
+    find ${srcdir}/opt/${pkgbase}/plugins/python/helpers/pydev/ \( -name *.so -o -name *.pyd \) -delete
+    sed -i '1s/^/# cython: language_level=3\n/' ${srcdir}/opt/${pkgbase}/plugins/python/helpers/pydev/_pydevd_bundle/pydevd_cython.pxd
+    python ${srcdir}/opt/${pkgbase}/plugins/python/helpers/pydev/setup_cython.py build_ext --inplace --force-cython
+    # for attach debugger
+    pushd ${srcdir}/opt/${pkgbase}/plugins/python/helpers/pydev/pydevd_attach_to_process/linux_and_mac
+    g++ -m64 -shared -o ../attach_linux_amd64.so -fPIC -nostartfiles attach.cpp
+    popd
+
+    rm -rf ${srcdir}/opt/${pkgbase}/plugins/python/helpers/pydev/build/
+    find ${srcdir}/opt/${pkgbase}/plugins/python/helpers/pydev/ -name __pycache__ -exec rm -rf {} \;
+}
+
+package_jetbrains-pycharm() {
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+    backup=("opt/${pkgname}/bin/idea.properties"
+            "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
+    depends=('giflib' 'glib2' 'libxtst' 'libxrender')
+    optdepends=('jetbrains-pycharm-jre: JetBrains custom Java Runtime (Recommended)'
+                'java-runtime:      JRE - Required if jetbrains-pycharm-jre is not installed'
+                'libdbusmenu-glib:  For global menu support'
+                'gnome-keyring:     Save login/deployment credentials safely'
+                'java-openjfx:      Rendering Markdown files'
+                'python:            Python language support'
+                'python-coverage:   For support code coverage measurement'
+                'python-pytest:     For support testing inside Pycharm'
+                'python-setuptools: Packages manager for Python, for project interpreter'
+                'python-tox:        Python environments for testing tool'
+                'ipython:           For enhanced interactive Python shell inside Pycharm'
+                'cython:            For performance debugger'
+                'openssh:           For deployment and remote connections'
+                'docker-machine:    For support docker inside Pycharm'
+                'docker-compose:    For support docker inside Pycharm'
+                'vagrant:           For support virtualized development environments'
+                'jupyter-server:    For Jupyter notebooks and apps')
+
+    # create dir
+    install -dm755 "${pkgdir}"/opt/
+    install -dm755 "${pkgdir}"/usr/bin/
+    install -dm755 "${pkgdir}"/usr/share/applications/
+    install -dm755 "${pkgdir}"/usr/share/icons/hicolor/"{128x128,scalable}"/apps/
+    install -dm755 "${pkgdir}"/usr/share/pixmaps/
+    install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"/
+
+    # package files
+    rsync -rtl "${srcdir}/opt" "${pkgdir}" \
+          --exclude=/opt/${pkgname}/jbr \
+    # /usr/bin/
+    ln -s "/opt/${pkgname}/bin/${pkgbase##*-}.sh" \
+          "${pkgdir}/usr/bin/${pkgname}"
+
+    # applications
+    install -Dm644 "${srcdir}/${pkgname}.desktop" \
+                   "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+    # icons/hicolor
+    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.png" \
+                   "$pkgdir/usr/share/icons/hicolor/128x128/apps/${pkgname}.png"
+    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.svg" \
+                   "$pkgdir/usr/share/icons/hicolor/scalable/apps/${pkgname}.svg"
+    # pixmaps
+    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.svg" \
+                   "${pkgdir}/usr/share/pixmaps/${pkgname}.svg"
+    # licenses
+    install -Dm644 "${srcdir}/LICENSE" \
+                   "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
+
+package_jetbrains-pycharm-jre() {
+    pkgdesc='JetBrains Runtime (JBR) for PyCharm - a patched JRE'
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+
+    # create dir
+    install -dm755 "${pkgdir}/opt/${pkgbase}/"
+    # package files
+    rsync -rtl "${srcdir}/opt/${pkgbase}/jbr" "${pkgdir}/opt/${pkgbase}"
+}

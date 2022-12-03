@@ -1,0 +1,67 @@
+pkgbase = jetbrains-clion
+	pkgdesc = A cross-platform C and C++ IDE by JetBrains.
+	pkgver = 2021.2.2
+	pkgrel = 1
+	url = https://www.jetbrains.com/clion/download/other.html
+	install = jetbrains-clion-old.install
+	arch = x86_64
+	license = custom:jetbrains
+	makedepends = rsync
+	noextract = CLion-2021.2.2.tar.gz
+	options = !strip
+	source = https://download.jetbrains.com/cpp/CLion-2021.2.2.tar.gz
+	source = jetbrains-clion-old.desktop
+	source = jetbrains-clion-old.install
+	source = LICENSE
+	sha256sums = 70c6f969c10d2afd09f0793bb0890260cdc388bce11d5f629b07233ee28e2f61
+	sha256sums = SKIP
+	sha256sums = f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a
+	sha256sums = c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1
+
+pkgname = jetbrains-clion-old
+	depends = giflib
+	depends = glib2
+	depends = libxtst
+	optdepends = jetbrains-clion-jre-old: JetBrains custom Java Runtime (Recommended)
+	optdepends = jetbrains-clion-clang-old: JetBrains packaged LLVM compiler
+	optdepends = jetbrains-clion-cmake-old: JetBrains packaged CMake build system
+	optdepends = jetbrains-clion-gdb-old: JetBrains packaged GNU debugger
+	optdepends = jetbrains-clion-lldb-old: JetBrains packaged LLVM debugger
+	optdepends = java-runtime: JRE - Required if jetbrains-clion-jre-old is not installed
+	optdepends = libdbusmenu-glib: For global menu support
+	optdepends = gnome-keyring: Save login/deployment credentials safely
+	optdepends = java-openjfx: Rendering Markdown files
+	optdepends = cmake: Build system - Required if jetbrains-clion-cmake-old is not installed
+	optdepends = gdb: GNU debugger - Required if jetbrains-clion-gdb-old is not installed
+	optdepends = lldb: LLVM debugger - Required if jetbrains-clion-lldb-old is not installed
+	optdepends = gcc: GNU compiler
+	optdepends = clang: LLVM compiler
+	optdepends = biicode: C/C++ dependency manager
+	optdepends = gtest: C++ testing
+	optdepends = swift-language: Swift programming language support (Also requires the plugin)
+	optdepends = doxygen: Code documentation generation
+	provides = jetbrains-clion-old
+	conflicts = jetbrains-clion-old
+	backup = opt/jetbrains-clion-old/bin/idea.properties
+	backup = opt/jetbrains-clion-old/bin/clion64.vmoptions
+
+pkgname = jetbrains-clion-jre-old
+	pkgdesc = JetBrains Runtime (JBR) for CLion - a patched JRE
+	provides = jetbrains-clion-jre-old
+	conflicts = jetbrains-clion-jre-old
+
+pkgname = jetbrains-clion-clang-old
+	provides = jetbrains-clion-clang-old
+	conflicts = jetbrains-clion-clang-old
+
+pkgname = jetbrains-clion-cmake-old
+	provides = jetbrains-clion-cmake-old
+	conflicts = jetbrains-clion-cmake-old
+
+pkgname = jetbrains-clion-gdb-old
+	provides = jetbrains-clion-gdb-old
+	conflicts = jetbrains-clion-gdb-old
+
+pkgname = jetbrains-clion-lldb-old
+	provides = jetbrains-clion-lldb-old
+	conflicts = jetbrains-clion-lldb-old
