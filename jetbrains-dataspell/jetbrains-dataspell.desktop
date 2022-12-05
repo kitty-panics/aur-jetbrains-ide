@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=JetBrains DataSpell
+Icon=jetbrains-dataspell
+Exec=jetbrains-dataspell %f
+Comment=A cross-platform Data Scientists IDE by JetBrains
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-dataspell

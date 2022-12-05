@@ -22,6 +22,7 @@
 + 跟随官网不断更新
     - jetbrains-clion         `v2022.3`
     - jetbrains-datagrip      `v2022.3`
+    - jetbrains-dataspell     `v2022.3`
     - jetbrains-goland        `v2022.3`
     - jetbrains-intellij-idea `v2022.3`
     - jetbrains-phpstorm      `v2022.2.4`
