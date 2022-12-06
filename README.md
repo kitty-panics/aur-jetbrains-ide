@@ -25,7 +25,7 @@
     - jetbrains-dataspell     `v2022.3`
     - jetbrains-goland        `v2022.3`
     - jetbrains-intellij-idea `v2022.3`
-    - jetbrains-phpstorm      `v2022.2.4`
+    - jetbrains-phpstorm      `v2022.3`
     - jetbrains-pycharm       `v2022.3`
     - jetbrains-rider         `v2022.2.4`
     - jetbrains-rubymine      `v2022.3`

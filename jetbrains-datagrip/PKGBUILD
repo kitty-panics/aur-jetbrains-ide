@@ -26,8 +26,7 @@ noextract=("${_tar_gz}")
 prepare() {
     rm -rf "${srcdir}/opt"
     mkdir -p "${srcdir}/opt/${pkgbase}"
-    bsdtar --strip-components 1 -x -f "${_tar_gz}" \
-                                   -C "${srcdir}/opt/${pkgbase}"
+    bsdtar --strip-components 1 -xf "${_tar_gz}" -C "${srcdir}/opt/${pkgbase}"
 }
 
 package_jetbrains-datagrip() {
@@ -48,7 +47,7 @@ package_jetbrains-datagrip() {
     install -dm755 "${pkgdir}"/opt/
     install -dm755 "${pkgdir}"/usr/bin/
     install -dm755 "${pkgdir}"/usr/share/applications/
-    install -dm755 "${pkgdir}"/usr/share/icons/hicolor/"{128x128,scalable}"/apps/
+    install -dm755 "${pkgdir}"/usr/share/icons/hicolor/{128x128,scalable}/apps/
     install -dm755 "${pkgdir}"/usr/share/pixmaps/
     install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"/
 
