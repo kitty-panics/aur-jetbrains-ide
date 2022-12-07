@@ -1,7 +1,7 @@
 pkgbase = jetbrains-pycharm
 	pkgdesc = A cross-platform Python IDE by JetBrains.
 	pkgver = 2022.3
-	pkgrel = 2
+	pkgrel = 3
 	url = https://www.jetbrains.com/pycharm/
 	install = jetbrains-pycharm.install
 	arch = x86_64

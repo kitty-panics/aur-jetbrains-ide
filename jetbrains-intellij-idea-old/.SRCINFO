@@ -1,7 +1,7 @@
 pkgbase = jetbrains-intellij-idea
 	pkgdesc = A cross-platform Java and Kotlin IDE by JetBrains.
 	pkgver = 2021.2.2
-	pkgrel = 2
+	pkgrel = 3
 	url = https://www.jetbrains.com/idea/download/other.html
 	install = jetbrains-intellij-idea-old.install
 	arch = x86_64

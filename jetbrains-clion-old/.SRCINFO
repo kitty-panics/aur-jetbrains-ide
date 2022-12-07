@@ -1,7 +1,7 @@
 pkgbase = jetbrains-clion
 	pkgdesc = A cross-platform C and C++ IDE by JetBrains.
 	pkgver = 2021.2.2
-	pkgrel = 2
+	pkgrel = 3
 	url = https://www.jetbrains.com/clion/download/other.html
 	install = jetbrains-clion-old.install
 	arch = x86_64

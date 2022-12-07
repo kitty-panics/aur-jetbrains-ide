@@ -1,7 +1,7 @@
 pkgbase = jetbrains-phpstorm
 	pkgdesc = A cross-platform PHP IDE by JetBrains.
 	pkgver = 2021.2.2
-	pkgrel = 2
+	pkgrel = 3
 	url = https://www.jetbrains.com/phpstorm/download/other.html
 	install = jetbrains-phpstorm-old.install
 	arch = x86_64

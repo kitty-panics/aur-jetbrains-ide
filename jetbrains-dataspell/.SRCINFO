@@ -1,7 +1,7 @@
 pkgbase = jetbrains-dataspell
 	pkgdesc = A cross-platform Data Scientists IDE by JetBrains.
 	pkgver = 2022.3
-	pkgrel = 2
+	pkgrel = 3
 	url = https://www.jetbrains.com/dataspell/
 	install = jetbrains-dataspell.install
 	arch = x86_64

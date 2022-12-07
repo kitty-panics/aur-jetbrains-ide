@@ -1,7 +1,7 @@
 pkgbase = jetbrains-datagrip
 	pkgdesc = A cross-platform Databases IDE by JetBrains.
 	pkgver = 2022.3
-	pkgrel = 2
+	pkgrel = 3
 	url = https://www.jetbrains.com/datagrip/
 	install = jetbrains-datagrip.install
 	arch = x86_64

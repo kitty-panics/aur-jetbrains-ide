@@ -1,7 +1,7 @@
 pkgbase = jetbrains-rubymine
 	pkgdesc = A cross-platform Ruby IDE by JetBrains.
 	pkgver = 2022.3
-	pkgrel = 2
+	pkgrel = 3
 	url = https://www.jetbrains.com/ruby/
 	install = jetbrains-rubymine.install
 	arch = x86_64

@@ -1,7 +1,7 @@
 pkgbase = jetbrains-webstorm
 	pkgdesc = A cross-platform Web IDE by JetBrains.
 	pkgver = 2022.3
-	pkgrel = 2
+	pkgrel = 3
 	url = https://www.jetbrains.com/webstorm/
 	install = jetbrains-webstorm.install
 	arch = x86_64

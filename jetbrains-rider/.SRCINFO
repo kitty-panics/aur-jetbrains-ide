@@ -1,7 +1,7 @@
 pkgbase = jetbrains-rider
 	pkgdesc = A cross-platform C# IDE by JetBrains.
 	pkgver = 2022.2.4
-	pkgrel = 2
+	pkgrel = 3
 	url = https://www.jetbrains.com/rider/
 	install = jetbrains-rider.install
 	arch = x86_64

@@ -1,7 +1,7 @@
 pkgbase = jetbrains-goland
 	pkgdesc = A cross-platform GO IDE by JetBrains.
 	pkgver = 2022.3
-	pkgrel = 2
+	pkgrel = 3
 	url = https://www.jetbrains.com/go/
 	install = jetbrains-goland.install
 	arch = x86_64

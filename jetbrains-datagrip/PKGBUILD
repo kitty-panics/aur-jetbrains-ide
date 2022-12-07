@@ -3,7 +3,7 @@
 pkgbase=jetbrains-datagrip
 pkgname=(${pkgbase} ${pkgbase}-jre)
 pkgver=2022.3
-pkgrel=2
+pkgrel=3
 url="https://www.jetbrains.com/datagrip/"
 pkgdesc="A cross-platform Databases IDE by JetBrains."
 arch=('x86_64')
@@ -46,6 +46,7 @@ package_jetbrains-datagrip() {
     install -dm755 "${pkgdir}"/opt/
     install -dm755 "${pkgdir}"/usr/bin/
     install -dm755 "${pkgdir}"/usr/share/applications/
+    install -dm755 "${pkgdir}"/usr/share/doc/
     install -dm755 "${pkgdir}"/usr/share/icons/hicolor/{128x128,scalable}/apps/
     install -dm755 "${pkgdir}"/usr/share/pixmaps/
     install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"/
@@ -57,9 +58,12 @@ package_jetbrains-datagrip() {
     ln -s "/opt/${pkgname}/bin/${pkgbase##*-}.sh" \
           "${pkgdir}/usr/bin/${pkgname}"
 
-    # applications
+    # .desktop
     install -Dm644 "${srcdir}/${pkgname}.desktop" \
                    "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+    # doc
+    ln -s "/opt/${pkgname}/help" \
+          "${pkgdir}/usr/share/doc/${pkgname}"
     # icons/hicolor
     install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.png" \
                    "$pkgdir/usr/share/icons/hicolor/128x128/apps/${pkgname}.png"
