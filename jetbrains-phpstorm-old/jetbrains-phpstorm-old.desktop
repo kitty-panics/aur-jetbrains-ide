@@ -1,10 +1,10 @@
 [Desktop Entry]
-Version=1.0
 Type=Application
+Version=1.0
 Name=JetBrains PhpStorm (old)
-Icon=jetbrains-phpstorm-old
-Exec=jetbrains-phpstorm-old %f
 Comment=A cross-platform PHP IDE by JetBrains
-Categories=Development;IDE;
+Exec=jetbrains-phpstorm-old %f
+Icon=jetbrains-phpstorm-old
 Terminal=false
+Categories=Development;IDE;
 StartupWMClass=jetbrains-phpstorm-old

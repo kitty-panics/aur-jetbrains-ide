@@ -13,6 +13,7 @@
 + 绝大多数包都装在 `/opt/` 中，但 RubyMine 却装在了 `/usr/share/` 中
 + RubyMine 会更改默认的 .vmoptions 配置，其它包又都遵守默认配置
 + JetBrains 各 IDE 都师出同门，但 `depends`、`optdepends` 又不尽相同
++ ......
 
 相比之下，本仓库的 JetBrains IDE 打包脚本更规范，风格更统一。
 

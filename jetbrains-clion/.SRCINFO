@@ -1,7 +1,7 @@
 pkgbase = jetbrains-clion
 	pkgdesc = A cross-platform C and C++ IDE by JetBrains.
 	pkgver = 2022.3
-	pkgrel = 1
+	pkgrel = 2
 	url = https://www.jetbrains.com/clion/
 	install = jetbrains-clion.install
 	arch = x86_64
@@ -18,8 +18,8 @@ pkgbase = jetbrains-clion
 	source = jetbrains-clion.install
 	source = LICENSE
 	sha256sums = SKIP
-	sha256sums = 74c7c4c169cac9547b4e7c58c56e2c0f690a37bc2d582735f0cf68b8235875a6
-	sha256sums = f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a
+	sha256sums = 51c1091a54406a7504d02b737906046dde5d67ba1310ce54ef8530f14d63cc9d
+	sha256sums = ec4c58e5e3636feb9ab106229bf29abe6c6117eb73f1a36fdf2a35c4e7e98fe0
 	sha256sums = c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1
 
 pkgname = jetbrains-clion

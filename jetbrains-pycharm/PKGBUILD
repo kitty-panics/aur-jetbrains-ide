@@ -3,7 +3,7 @@
 pkgbase=jetbrains-pycharm
 pkgname=(${pkgbase} ${pkgbase}-jre)
 pkgver=2022.3
-pkgrel=1
+pkgrel=2
 url="https://www.jetbrains.com/pycharm/"
 pkgdesc="A cross-platform Python IDE by JetBrains."
 arch=('x86_64')
@@ -18,15 +18,14 @@ source=("https://download.jetbrains.com/python/${_tar_gz}"
         "${pkgbase}.install"
         "LICENSE")
 sha256sums=('SKIP'
-            'b74603a9dda110eb73af1e25f396a32f5b97955f59e64a00c9876fd5247f0311'
-            'f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a'
+            'e1251baa7389b906cf22bb720fd491f13a41d35cee4eeb5de5d8cceb485794b7'
+            'ec4c58e5e3636feb9ab106229bf29abe6c6117eb73f1a36fdf2a35c4e7e98fe0'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
 noextract=("${_tar_gz}")
 
 prepare() {
-    rm -rf "${srcdir}/opt"
-    mkdir -p "${srcdir}/opt/${pkgbase}"
-    bsdtar --strip-components 1 -xf "${_tar_gz}" -C "${srcdir}/opt/${pkgbase}"
+    install -dm755 "${srcdir}"/opt/"${pkgbase}"/
+    bsdtar --strip-components 1 -xf "${_tar_gz}" -C "${srcdir}"/opt/"${pkgbase}"
 }
 
 build() {

@@ -3,7 +3,7 @@
 pkgbase=jetbrains-phpstorm
 pkgname=(${pkgbase} ${pkgbase}-jre)
 pkgver=2022.3
-pkgrel=1
+pkgrel=2
 url="https://www.jetbrains.com/phpstorm/"
 pkgdesc="A cross-platform PHP IDE by JetBrains."
 arch=('x86_64')
@@ -18,15 +18,14 @@ source=("https://download.jetbrains.com/webide/${_tar_gz}"
         "${pkgbase}.install"
         "LICENSE")
 sha256sums=('SKIP'
-            'f5bf704be776952c4b826bc4f0873c19ff800dcf62bbc5a2d197657e45939853'
-            'f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a'
+            '95814b9d54a6aef1fc0ba98fd6a8ccf888c91ae9643ccd2a32349cc698f7d38b'
+            'ec4c58e5e3636feb9ab106229bf29abe6c6117eb73f1a36fdf2a35c4e7e98fe0'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
 noextract=("${_tar_gz}")
 
 prepare() {
-    rm -rf "${srcdir}/opt"
-    mkdir -p "${srcdir}/opt/${pkgbase}"
-    bsdtar --strip-components 1 -xf "${_tar_gz}" -C "${srcdir}/opt/${pkgbase}"
+    install -dm755 "${srcdir}"/opt/"${pkgbase}"/
+    bsdtar --strip-components 1 -xf "${_tar_gz}" -C "${srcdir}"/opt/"${pkgbase}"
 }
 
 package_jetbrains-phpstorm() {

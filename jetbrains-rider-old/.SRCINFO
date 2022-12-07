@@ -1,7 +1,7 @@
 pkgbase = jetbrains-rider
 	pkgdesc = A cross-platform C# IDE by JetBrains.
 	pkgver = 2021.2.2
-	pkgrel = 1
+	pkgrel = 2
 	url = https://www.jetbrains.com/rider/download/other.html
 	install = jetbrains-rider-old.install
 	arch = x86_64
@@ -17,8 +17,8 @@ pkgbase = jetbrains-rider
 	source = jetbrains-rider-old.install
 	source = LICENSE
 	sha256sums = ca61667359c841b01b2b257df476b97cfcce8c423e6a0a32c5b1e4367e45bd9f
-	sha256sums = 317976e51edabfa8f08219bf26d937c5aff416b115f95a0fde63a9b431fff27d
-	sha256sums = f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a
+	sha256sums = 33a4eceac893e13923bdc5fa54b041626f8068d0deb23403dbaaba1ae02d9d49
+	sha256sums = ec4c58e5e3636feb9ab106229bf29abe6c6117eb73f1a36fdf2a35c4e7e98fe0
 	sha256sums = c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1
 
 pkgname = jetbrains-rider-old

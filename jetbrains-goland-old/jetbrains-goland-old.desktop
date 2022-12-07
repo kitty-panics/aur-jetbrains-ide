@@ -1,10 +1,10 @@
 [Desktop Entry]
-Version=1.0
 Type=Application
+Version=1.0
 Name=JetBrains GoLand (old)
-Icon=jetbrains-goland-old
-Exec=jetbrains-goland-old %f
 Comment=A cross-platform GO IDE by JetBrains
-Categories=Development;IDE;
+Exec=jetbrains-goland-old %f
+Icon=jetbrains-goland-old
 Terminal=false
+Categories=Development;IDE;
 StartupWMClass=jetbrains-goland-old

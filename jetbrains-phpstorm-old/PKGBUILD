@@ -3,7 +3,7 @@
 pkgbase=jetbrains-phpstorm
 pkgname=(${pkgbase}-old ${pkgbase}-jre-old)
 pkgver=2021.2.2
-pkgrel=1
+pkgrel=2
 url="https://www.jetbrains.com/phpstorm/download/other.html"
 pkgdesc="A cross-platform PHP IDE by JetBrains."
 arch=('x86_64')
@@ -18,15 +18,14 @@ source=("https://download.jetbrains.com/webide/${_tar_gz}"
         "${pkgbase}-old.install"
         "LICENSE")
 sha256sums=('e05ff409406f23fa29c585d9096c6ff665760e1a57edbd73b8268916d368941a'
-            'bf645fb25b3ad0f1d6da803b04ebb2f30085aa5192afea8d4f304ded306db894'
-            'f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a'
+            'cf1a810e41e93f71907e465dc8642c3306053df0ccf30d222dc0f81ae1f22d2e'
+            'ec4c58e5e3636feb9ab106229bf29abe6c6117eb73f1a36fdf2a35c4e7e98fe0'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
 noextract=("${_tar_gz}")
 
 prepare() {
-    rm -rf "${srcdir}/opt"
-    mkdir -p "${srcdir}/opt/${pkgbase}-old"
-    bsdtar --strip-components 1 -xf "${_tar_gz}" -C "${srcdir}/opt/${pkgbase}-old"
+    install -dm755 "${srcdir}"/opt/"${pkgbase}"-old/
+    bsdtar --strip-components 1 -xf "${_tar_gz}" -C "${srcdir}"/opt/"${pkgbase}"-old
 }
 
 package_jetbrains-phpstorm-old() {

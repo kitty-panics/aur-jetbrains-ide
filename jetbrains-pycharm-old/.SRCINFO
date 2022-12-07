@@ -1,7 +1,7 @@
 pkgbase = jetbrains-pycharm
 	pkgdesc = A cross-platform Python IDE by JetBrains.
 	pkgver = 2021.2.2
-	pkgrel = 1
+	pkgrel = 2
 	url = https://www.jetbrains.com/pycharm/download/other.html
 	install = jetbrains-pycharm-old.install
 	arch = x86_64
@@ -18,8 +18,8 @@ pkgbase = jetbrains-pycharm
 	source = jetbrains-pycharm-old.install
 	source = LICENSE
 	sha256sums = a6dc59213bdd728b628f14179e3da271eea2344cced8ee50be71582392abf555
-	sha256sums = 963920ed686b67db1a3ba52770b84f7d5720b1211a6656e0cc352cfb4b3a1015
-	sha256sums = f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a
+	sha256sums = 9f47b682fa52133b706b0d9f7a7f145dea189d423e1e1509ca046afe8c4da3b5
+	sha256sums = ec4c58e5e3636feb9ab106229bf29abe6c6117eb73f1a36fdf2a35c4e7e98fe0
 	sha256sums = c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1
 
 pkgname = jetbrains-pycharm-old

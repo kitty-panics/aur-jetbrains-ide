@@ -1,10 +1,10 @@
 [Desktop Entry]
-Version=1.0
 Type=Application
+Version=1.0
 Name=JetBrains CLion
-Icon=jetbrains-clion
-Exec=jetbrains-clion %f
 Comment=A cross-platform C and C++ IDE by JetBrains
-Categories=Development;IDE;
+Exec=jetbrains-clion %f
+Icon=jetbrains-clion
 Terminal=false
+Categories=Development;IDE;
 StartupWMClass=jetbrains-clion

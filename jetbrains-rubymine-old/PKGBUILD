@@ -3,7 +3,7 @@
 pkgbase=jetbrains-rubymine
 pkgname=(${pkgbase}-old ${pkgbase}-jre-old)
 pkgver=2021.2.2
-pkgrel=1
+pkgrel=2
 url="https://www.jetbrains.com/ruby/download/other.html"
 pkgdesc="A cross-platform Ruby IDE by JetBrains."
 arch=('x86_64')
@@ -18,15 +18,14 @@ source=("https://download.jetbrains.com/ruby/${_tar_gz}"
         "${pkgbase}-old.install"
         "LICENSE")
 sha256sums=('979745e52bdef91ed2ea46f392ba4b838849fbc3ec2ce0607ca7087bdc5479d3'
-            '39ff033f451cb1f12b61370dadae3d374c364adab1c56f9e1324317d6a5aa7f5'
-            'f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a'
+            'd0c9d7061401c01dad3585788f447f4d2b26cca54e397d5458212d99bbfdfe69'
+            'ec4c58e5e3636feb9ab106229bf29abe6c6117eb73f1a36fdf2a35c4e7e98fe0'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
 noextract=("${_tar_gz}")
 
 prepare() {
-    rm -rf "${srcdir}/opt"
-    mkdir -p "${srcdir}/opt/${pkgbase}-old"
-    bsdtar --strip-components 1 -xf "${_tar_gz}" -C "${srcdir}/opt/${pkgbase}-old"
+    install -dm755 "${srcdir}"/opt/"${pkgbase}"-old/
+    bsdtar --strip-components 1 -xf "${_tar_gz}" -C "${srcdir}"/opt/"${pkgbase}"-old
 }
 
 package_jetbrains-rubymine-old() {

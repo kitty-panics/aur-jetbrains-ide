@@ -1,10 +1,10 @@
 [Desktop Entry]
-Version=1.0
 Type=Application
+Version=1.0
 Name=JetBrains RubyMine
-Icon=jetbrains-rubymine
-Exec=jetbrains-rubymine %f
 Comment=A cross-platform Ruby IDE by JetBrains
-Categories=Development;IDE;
+Exec=jetbrains-rubymine %f
+Icon=jetbrains-rubymine
 Terminal=false
+Categories=Development;IDE;
 StartupWMClass=jetbrains-rubymine

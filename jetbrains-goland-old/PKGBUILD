@@ -3,7 +3,7 @@
 pkgbase=jetbrains-goland
 pkgname=(${pkgbase}-old ${pkgbase}-jre-old)
 pkgver=2021.2.3
-pkgrel=1
+pkgrel=2
 url="https://www.jetbrains.com/go/download/other.html"
 pkgdesc="A cross-platform GO IDE by JetBrains."
 arch=('x86_64')
@@ -18,15 +18,14 @@ source=("https://download.jetbrains.com/go/${_tar_gz}"
         "${pkgbase}-old.install"
         "LICENSE")
 sha256sums=('af413a8357c15ba1aebd4594a4cb9988473d1319df2c815a5697ec5ec0cc1ed8'
-            'bcd84e7f7a28400107a4c1c497d0a633d0acfbf171ca2db2b02b8d133ae6b3dc'
-            'f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a'
+            '9afc6168f866c3b35860e00259e512566f2de6f7d6ad6d9fa511dbea60e34ffb'
+            'ec4c58e5e3636feb9ab106229bf29abe6c6117eb73f1a36fdf2a35c4e7e98fe0'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
 noextract=("${_tar_gz}")
 
 prepare() {
-    rm -rf "${srcdir}/opt"
-    mkdir -p "${srcdir}/opt/${pkgbase}-old"
-    bsdtar --strip-components 1 -xf "${_tar_gz}" -C "${srcdir}/opt/${pkgbase}-old"
+    install -dm755 "${srcdir}"/opt/"${pkgbase}"-old/
+    bsdtar --strip-components 1 -xf "${_tar_gz}" -C "${srcdir}"/opt/"${pkgbase}"-old
 }
 
 package_jetbrains-goland-old() {

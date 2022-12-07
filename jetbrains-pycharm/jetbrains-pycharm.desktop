@@ -1,10 +1,10 @@
 [Desktop Entry]
-Version=1.0
 Type=Application
+Version=1.0
 Name=JetBrains PyCharm
-Icon=jetbrains-pycharm
-Exec=jetbrains-pycharm %f
 Comment=A cross-platform Python IDE by JetBrains
-Categories=Development;IDE;
+Exec=jetbrains-pycharm %f
+Icon=jetbrains-pycharm
 Terminal=false
+Categories=Development;IDE;
 StartupWMClass=jetbrains-pycharm

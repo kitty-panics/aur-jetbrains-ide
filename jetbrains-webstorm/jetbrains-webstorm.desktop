@@ -1,10 +1,10 @@
 [Desktop Entry]
-Version=1.0
 Type=Application
+Version=1.0
 Name=JetBrains WebStorm
-Icon=jetbrains-webstorm
-Exec=jetbrains-webstorm %f
 Comment=A cross-platform Web IDE by JetBrains
-Categories=Development;IDE;
+Exec=jetbrains-webstorm %f
+Icon=jetbrains-webstorm
 Terminal=false
+Categories=Development;IDE;
 StartupWMClass=jetbrains-webstorm

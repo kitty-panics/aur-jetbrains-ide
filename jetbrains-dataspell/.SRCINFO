@@ -1,7 +1,7 @@
 pkgbase = jetbrains-dataspell
 	pkgdesc = A cross-platform Data Scientists IDE by JetBrains.
 	pkgver = 2022.3
-	pkgrel = 1
+	pkgrel = 2
 	url = https://www.jetbrains.com/dataspell/
 	install = jetbrains-dataspell.install
 	arch = x86_64
@@ -18,8 +18,8 @@ pkgbase = jetbrains-dataspell
 	source = jetbrains-dataspell.install
 	source = LICENSE
 	sha256sums = SKIP
-	sha256sums = 2ff333eae2b8746581b3203a94624c009b8ef7b46b5a3b1a3b388631f90b1bc4
-	sha256sums = f2b528f523962d0ec4511e3fa4a6d2e5b6cf959da8547017b32c6fed6f06821a
+	sha256sums = 4ec6a899459a019356f013fff44358ff6f4f7b0a1f8c872ab36f07f4db6b6d06
+	sha256sums = ec4c58e5e3636feb9ab106229bf29abe6c6117eb73f1a36fdf2a35c4e7e98fe0
 	sha256sums = c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1
 
 pkgname = jetbrains-dataspell
