@@ -31,7 +31,7 @@
     - jetbrains-intellij-idea `v2022.3`
     - jetbrains-phpstorm      `v2022.3`
     - jetbrains-pycharm       `v2022.3`
-    - jetbrains-rider         `v2022.2.4`
+    - jetbrains-rider         `v2022.3`
     - jetbrains-rubymine      `v2022.3`
     - jetbrains-webstorm      `v2022.3`
 + 永远停留在 `2021.2.X`

@@ -2,7 +2,7 @@
 
 pkgbase=jetbrains-rider
 pkgname=(${pkgbase} ${pkgbase}-jre)
-pkgver=2022.2.4
+pkgver=2022.3
 pkgrel=3
 url="https://www.jetbrains.com/rider/"
 pkgdesc="A cross-platform C# IDE by JetBrains."
