@@ -2,13 +2,13 @@
 
 pkgbase=jetbrains-dataspell
 pkgname=(${pkgbase} ${pkgbase}-jre)
-pkgver=2022.3
-pkgrel=3
+pkgver=2022.3.1
+pkgrel=2
 url="https://www.jetbrains.com/dataspell/"
 pkgdesc="A cross-platform Data Scientists IDE by JetBrains."
 arch=('x86_64')
 license=('custom:jetbrains')
-depends=('giflib' 'glib2' 'libxtst' 'libxrender')
+depends=('nspr' 'nss' 'pcre' 'alsa-lib')
 makedepends=('rsync')
 options=('!strip')
 _tar_gz="dataspell-${pkgver}.tar.gz"
@@ -19,7 +19,7 @@ source=("https://download.jetbrains.com/python/${_tar_gz}"
         "LICENSE")
 sha256sums=('SKIP'
             '4ec6a899459a019356f013fff44358ff6f4f7b0a1f8c872ab36f07f4db6b6d06'
-            'ec4c58e5e3636feb9ab106229bf29abe6c6117eb73f1a36fdf2a35c4e7e98fe0'
+            'a0ddbea1cf07f2358915eb6841775dbea20c880ab76b82a7caee009124262595'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
 noextract=("${_tar_gz}")
 
@@ -49,29 +49,29 @@ package_jetbrains-dataspell() {
     install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"/
 
     # package files
-    rsync -rtl "${srcdir}/opt" "${pkgdir}" \
-          --exclude=/opt/${pkgname}/jbr \
+    rsync -rtl "${srcdir}"/opt "${pkgdir}" \
+          --exclude=/opt/"${pkgname}"/jbr \
     # /usr/bin/
-    ln -s "/opt/${pkgname}/bin/${pkgbase##*-}.sh" \
-          "${pkgdir}/usr/bin/${pkgname}"
+    ln -s /opt/"${pkgname}"/bin/"${pkgbase##*-}".sh \
+          "${pkgdir}"/usr/bin/"${pkgname}"
 
     # .desktop
-    install -Dm644 "${srcdir}/${pkgname}.desktop" \
-                   "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+    install -Dm644 "${srcdir}"/"${pkgname}".desktop \
+                   "${pkgdir}"/usr/share/applications/"${pkgname}".desktop
     # doc
-    ln -s "/opt/${pkgname}/help" \
-          "${pkgdir}/usr/share/doc/${pkgname}"
+    ln -s /opt/"${pkgname}"/help \
+          "${pkgdir}"/usr/share/doc/"${pkgname}"
     # icons/hicolor
-    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.png" \
-                   "$pkgdir/usr/share/icons/hicolor/128x128/apps/${pkgname}.png"
-    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.svg" \
-                   "$pkgdir/usr/share/icons/hicolor/scalable/apps/${pkgname}.svg"
+    install -Dm644 "${pkgdir}"/opt/"${pkgname}"/bin/"${pkgbase##*-}".png \
+                   "${pkgdir}"/usr/share/icons/hicolor/128x128/apps/"${pkgname}".png
+    install -Dm644 "${pkgdir}"/opt/"${pkgname}"/bin/"${pkgbase##*-}".svg \
+                   "${pkgdir}"/usr/share/icons/hicolor/scalable/apps/"${pkgname}".svg
     # pixmaps
-    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.svg" \
-                   "${pkgdir}/usr/share/pixmaps/${pkgname}.svg"
+    install -Dm644 "${pkgdir}"/opt/"${pkgname}"/bin/"${pkgbase##*-}".svg \
+                   "${pkgdir}"/usr/share/pixmaps/"${pkgname}".svg
     # licenses
-    install -Dm644 "${srcdir}/LICENSE" \
-                   "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+    install -Dm644 "${srcdir}"/LICENSE \
+                   "${pkgdir}"/usr/share/licenses/"${pkgname}"/LICENSE
 }
 
 package_jetbrains-dataspell-jre() {
@@ -80,7 +80,7 @@ package_jetbrains-dataspell-jre() {
     conflicts=("${pkgname}")
 
     # create dir
-    install -dm755 "${pkgdir}/opt/${pkgbase}/"
+    install -dm755 "${pkgdir}"/opt/"${pkgbase}"/
     # package files
-    rsync -rtl "${srcdir}/opt/${pkgbase}/jbr" "${pkgdir}/opt/${pkgbase}"
+    rsync -rtl "${srcdir}"/opt/"${pkgbase}"/jbr "${pkgdir}"/opt/"${pkgbase}"
 }
