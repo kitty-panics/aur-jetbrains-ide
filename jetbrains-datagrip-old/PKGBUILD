@@ -3,12 +3,12 @@
 pkgbase=jetbrains-datagrip
 pkgname=(${pkgbase}-old ${pkgbase}-jre-old)
 pkgver=2021.2.2
-pkgrel=3
+pkgrel=4
 url="https://www.jetbrains.com/datagrip/download/other.html"
 pkgdesc="A cross-platform Databases IDE by JetBrains."
 arch=('x86_64')
 license=('custom:jetbrains')
-depends=('giflib' 'glib2' 'libxtst')
+depends=('nspr' 'nss' 'alsa-lib')
 makedepends=('rsync')
 options=('!strip')
 _tar_gz="datagrip-${pkgver}.tar.gz"
@@ -19,7 +19,7 @@ source=("https://download.jetbrains.com/datagrip/${_tar_gz}"
         "LICENSE")
 sha256sums=('638b2c584a1b90d29e6ada829f8e3cdbfd3aad7afcd30b3a437d90b675adaaa1'
             'ffcc6de86a670c4097203b5e581efd08657b8ab93e3d49df8c38389967566e7b'
-            'ec4c58e5e3636feb9ab106229bf29abe6c6117eb73f1a36fdf2a35c4e7e98fe0'
+            'a0ddbea1cf07f2358915eb6841775dbea20c880ab76b82a7caee009124262595'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
 noextract=("${_tar_gz}")
 
@@ -52,29 +52,29 @@ package_jetbrains-datagrip-old() {
     install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"/
 
     # package files
-    rsync -rtl "${srcdir}/opt" "${pkgdir}" \
-          --exclude=/opt/${pkgname}/jbr \
+    rsync -rtl "${srcdir}"/opt "${pkgdir}" \
+          --exclude=/opt/"${pkgname}"/jbr \
     # /usr/bin/
-    ln -s "/opt/${pkgname}/bin/${pkgbase##*-}.sh" \
-          "${pkgdir}/usr/bin/${pkgname}"
+    ln -s /opt/"${pkgname}"/bin/"${pkgbase##*-}".sh \
+          "${pkgdir}"/usr/bin/"${pkgname}"
 
     # .desktop
-    install -Dm644 "${srcdir}/${pkgname}.desktop" \
-                   "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+    install -Dm644 "${srcdir}"/"${pkgname}".desktop \
+                   "${pkgdir}"/usr/share/applications/"${pkgname}".desktop
     # doc
-    ln -s "/opt/${pkgname}/help" \
-          "${pkgdir}/usr/share/doc/${pkgname}"
+    ln -s /opt/"${pkgname}"/help \
+          "${pkgdir}"/usr/share/doc/"${pkgname}"
     # icons/hicolor
-    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.png" \
-                   "$pkgdir/usr/share/icons/hicolor/128x128/apps/${pkgname}.png"
-    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.svg" \
-                   "$pkgdir/usr/share/icons/hicolor/scalable/apps/${pkgname}.svg"
+    install -Dm644 "${pkgdir}"/opt/"${pkgname}"/bin/"${pkgbase##*-}".png \
+                   "${pkgdir}"/usr/share/icons/hicolor/128x128/apps/"${pkgname}".png
+    install -Dm644 "${pkgdir}"/opt/"${pkgname}"/bin/"${pkgbase##*-}".svg \
+                   "${pkgdir}"/usr/share/icons/hicolor/scalable/apps/"${pkgname}".svg
     # pixmaps
-    install -Dm644 "${pkgdir}/opt/${pkgname}/bin/${pkgbase##*-}.svg" \
-                   "${pkgdir}/usr/share/pixmaps/${pkgname}.svg"
+    install -Dm644 "${pkgdir}"/opt/"${pkgname}"/bin/"${pkgbase##*-}".svg \
+                   "${pkgdir}"/usr/share/pixmaps/"${pkgname}".svg
     # licenses
-    install -Dm644 "${srcdir}/LICENSE" \
-                   "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+    install -Dm644 "${srcdir}"/LICENSE \
+                   "${pkgdir}"/usr/share/licenses/"${pkgname}"/LICENSE
 }
 
 package_jetbrains-datagrip-jre-old() {
@@ -83,7 +83,7 @@ package_jetbrains-datagrip-jre-old() {
     conflicts=("${pkgname}")
 
     # create dir
-    install -dm755 "${pkgdir}/opt/${pkgbase}-old/"
+    install -dm755 "${pkgdir}"/opt/"${pkgbase}"-old/
     # package files
-    rsync -rtl "${srcdir}/opt/${pkgbase}-old/jbr" "${pkgdir}/opt/${pkgbase}-old"
+    rsync -rtl "${srcdir}"/opt/"${pkgbase}"-old/jbr "${pkgdir}"/opt/"${pkgbase}"-old
 }
