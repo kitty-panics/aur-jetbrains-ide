@@ -12,14 +12,11 @@ depends=('nspr' 'nss' 'pcre' 'alsa-lib')
 makedepends=('rsync')
 options=('!strip')
 _tar_gz="JetBrains.Rider-${pkgver}.tar.gz"
-install="${pkgbase}.install"
 source=("https://download.jetbrains.com/rider/${_tar_gz}"
         "${pkgbase}.desktop"
-        "${pkgbase}.install"
         "LICENSE")
 sha256sums=('SKIP'
             '19bbc8d9bd95e6525bccc7ae9b1644c1f4c757f88fbd8f2a2777832c6422877f'
-            'a0ddbea1cf07f2358915eb6841775dbea20c880ab76b82a7caee009124262595'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
 noextract=("${_tar_gz}")
 

@@ -12,14 +12,11 @@ depends=('nspr' 'nss' 'pcre' 'alsa-lib')
 makedepends=('rsync')
 options=('!strip')
 _tar_gz="RubyMine-${pkgver}.tar.gz"
-install="${pkgbase}.install"
 source=("https://download.jetbrains.com/ruby/${_tar_gz}"
         "${pkgbase}.desktop"
-        "${pkgbase}.install"
         "LICENSE")
 sha256sums=('SKIP'
             '08d68bb08aec059688753b2e33a7539006a633472ffc4bfe99b84c414a8a7759'
-            'a0ddbea1cf07f2358915eb6841775dbea20c880ab76b82a7caee009124262595'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
 noextract=("${_tar_gz}")
 
