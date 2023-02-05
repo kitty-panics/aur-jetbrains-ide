@@ -2,8 +2,8 @@
 
 pkgbase=jetbrains-pycharm
 pkgname=(${pkgbase} ${pkgbase}-jre)
-pkgver=2022.3.1
-pkgrel=2
+pkgver=2022.3.2
+pkgrel=1
 url="https://www.jetbrains.com/pycharm/"
 pkgdesc="A cross-platform Python IDE by JetBrains."
 arch=('x86_64')

@@ -2,8 +2,8 @@
 
 pkgbase=jetbrains-clion
 pkgname=(${pkgbase} ${pkgbase}-jre ${pkgbase}-clang ${pkgbase}-cmake ${pkgbase}-gdb ${pkgbase}-lldb)
-pkgver=2022.3.1
-pkgrel=2
+pkgver=2022.3.2
+pkgrel=1
 url="https://www.jetbrains.com/clion/"
 pkgdesc="A cross-platform C and C++ IDE by JetBrains."
 arch=('x86_64')
