@@ -2,7 +2,7 @@
 
 pkgbase=jetbrains-datagrip
 pkgname=(${pkgbase} ${pkgbase}-jre)
-pkgver=2022.3.2
+pkgver=2022.3.3
 pkgrel=1
 url="https://www.jetbrains.com/datagrip/"
 pkgdesc="A cross-platform Databases IDE by JetBrains."
