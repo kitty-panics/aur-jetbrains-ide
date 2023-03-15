@@ -24,16 +24,16 @@
 本仓库提供了两种版本的 JetBrains IDE 打包脚本，并且不与 [AUR] 中相关的包相冲突。
 
 + 跟随官网不断更新
-    - jetbrains-clion         `v2022.3.1`
-    - jetbrains-datagrip      `v2022.3.1`
-    - jetbrains-dataspell     `v2022.3.1`
-    - jetbrains-goland        `v2022.3.1`
-    - jetbrains-intellij-idea `v2022.3.1`
-    - jetbrains-phpstorm      `v2022.3.1`
-    - jetbrains-pycharm       `v2022.3.1`
-    - jetbrains-rider         `v2022.3.1`
-    - jetbrains-rubymine      `v2022.3.1`
-    - jetbrains-webstorm      `v2022.3.1`
+    - jetbrains-clion         `v2022.3.2`
+    - jetbrains-datagrip      `v2022.3.2`
+    - jetbrains-dataspell     `v2022.3.2`
+    - jetbrains-goland        `v2022.3.2`
+    - jetbrains-intellij-idea `v2022.3.2`
+    - jetbrains-phpstorm      `v2022.3.2`
+    - jetbrains-pycharm       `v2022.3.2`
+    - jetbrains-rider         `v2022.3.2`
+    - jetbrains-rubymine      `v2022.3.2`
+    - jetbrains-webstorm      `v2022.3.2`
 + 永远停留在 `2021.2.X`
     - [jetbrains-clion-old]         `v2021.2.2`
     - [jetbrains-datagrip-old]      `v2021.2.2`
