@@ -27,13 +27,13 @@
     - jetbrains-clion         `v2022.3.3`
     - jetbrains-datagrip      `v2022.3.3`
     - jetbrains-dataspell     `v2022.3.3`
-    - jetbrains-goland        `v2022.3.3`
+    - jetbrains-goland        `v2022.3.4`
     - jetbrains-intellij-idea `v2022.3.3`
     - jetbrains-phpstorm      `v2022.3.3`
     - jetbrains-pycharm       `v2022.3.3`
     - jetbrains-rider         `v2022.3.3`
     - jetbrains-rubymine      `v2022.3.3`
-    - jetbrains-webstorm      `v2022.3.3`
+    - jetbrains-webstorm      `v2022.3.4`
 + 永远停留在 `2021.2.X`
     - [jetbrains-clion-old]         `v2021.2.2`
     - [jetbrains-datagrip-old]      `v2021.2.2`
