@@ -2,7 +2,7 @@
 
 pkgbase=jetbrains-phpstorm
 pkgname=(${pkgbase} ${pkgbase}-jre)
-pkgver=2022.3.3
+pkgver=2023.1
 pkgrel=1
 url="https://www.jetbrains.com/phpstorm/"
 pkgdesc="A cross-platform PHP IDE by JetBrains."
