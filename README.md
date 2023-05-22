@@ -26,7 +26,7 @@
 + 跟随官网不断更新
     - jetbrains-clion         `v2023.1.1`
     - jetbrains-datagrip      `v2023.1.1`
-    - jetbrains-dataspell     `v2023.1`
+    - jetbrains-dataspell     `v2023.1.1`
     - jetbrains-goland        `v2023.1.1`
     - jetbrains-intellij-idea `v2023.1.1`
     - jetbrains-phpstorm      `v2023.1.1`
