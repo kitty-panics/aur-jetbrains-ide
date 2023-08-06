@@ -2,7 +2,7 @@
 
 pkgbase=jetbrains-pycharm
 pkgname=(${pkgbase} ${pkgbase}-jre)
-pkgver=2023.1.4
+pkgver=2023.2
 pkgrel=1
 url="https://www.jetbrains.com/pycharm/"
 pkgdesc="A cross-platform Python IDE by JetBrains."
@@ -34,7 +34,7 @@ prepare() {
 #    g++ -m64 -shared -o ../attach_linux_amd64.so -fPIC -nostartfiles attach.cpp
 #    popd
 #
-#    rm -rf "${srcdir}"/opt/"${pkgbase}"/plugins/python/helpers/pydev/build/
+#    rm -rf "${srcdir}"/opt/"${pkgbase}"/plugins/python/helpers/pydev/build
 #    find "${srcdir}"/opt/"${pkgbase}"/plugins/python/helpers/pydev/ -name __pycache__ -exec rm -rf {} \;
 #}
 
