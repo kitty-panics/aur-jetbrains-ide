@@ -2,7 +2,7 @@
 
 pkgbase=jetbrains-webstorm
 pkgname=(${pkgbase} ${pkgbase}-jre)
-pkgver=2023.2.1
+pkgver=2023.2.2
 pkgrel=1
 url="https://www.jetbrains.com/webstorm/"
 pkgdesc="A cross-platform Web IDE by JetBrains."
