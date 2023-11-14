@@ -26,14 +26,14 @@
 + 跟随官网不断更新
     - jetbrains-clion         `v2023.2.2`
     - jetbrains-datagrip      `v2023.2.3`
-    - jetbrains-dataspell     `v2023.2.3`
-    - jetbrains-goland        `v2023.2.3`
-    - jetbrains-intellij-idea `v2023.2.3`
+    - jetbrains-dataspell     `v2023.2.4`
+    - jetbrains-goland        `v2023.2.4`
+    - jetbrains-intellij-idea `v2023.2.4`
     - jetbrains-phpstorm      `v2023.2.3`
-    - jetbrains-pycharm       `v2023.2.3`
+    - jetbrains-pycharm       `v2023.2.4`
     - jetbrains-rider         `v2023.2.3`
-    - jetbrains-rubymine      `v2023.2.3`
-    - jetbrains-webstorm      `v2023.2.3`
+    - jetbrains-rubymine      `v2023.2.4`
+    - jetbrains-webstorm      `v2023.2.4`
 + 永远停留在 `2021.2.X`
     - [jetbrains-clion-old]         `v2021.2.2`
     - [jetbrains-datagrip-old]      `v2021.2.2`
