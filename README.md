@@ -29,7 +29,7 @@
     - jetbrains-dataspell     `v2023.2.4`
     - jetbrains-goland        `v2023.2.4`
     - jetbrains-intellij-idea `v2023.2.5`
-    - jetbrains-phpstorm      `v2023.2.3`
+    - jetbrains-phpstorm      `v2023.2.4`
     - jetbrains-pycharm       `v2023.2.4`
     - jetbrains-rider         `v2023.2.3`
     - jetbrains-rubymine      `v2023.2.5`
