@@ -1,24 +1,38 @@
 # Maintainer: Kitty Panics
 
+    #> Package name
 pkgbase=jetbrains-clion
-pkgname=(${pkgbase} ${pkgbase}-jre ${pkgbase}-clang ${pkgbase}-cmake ${pkgbase}-gdb ${pkgbase}-lldb)
-pkgver=2023.3.2
+pkgname=("${pkgbase}" "${pkgbase}"-jre "${pkgbase}"-clang "${pkgbase}"-cmake "${pkgbase}"-gdb "${pkgbase}"-lldb)
+    #> Version
+pkgver=2023.3.3
 pkgrel=1
-url="https://www.jetbrains.com/clion/"
+#epoch=1
+    #> Generic
 pkgdesc="A cross-platform C and C++ IDE by JetBrains."
 arch=('x86_64')
+url="https://www.jetbrains.com/clion"
 license=('custom:jetbrains')
+    #> Dependencies
 depends=('nspr' 'nss' 'pcre' 'alsa-lib')
 makedepends=('rsync')
+#optdepends=('')
+    #> Package relations
+#provides=("${pkgname}")
+#conflicts=("${pkgname}")
+    #> Others
+#backup=("")
 options=('!strip')
+#install=xyz.install
+    #> Sources
 _tar_gz="CLion-${pkgver}.tar.gz"
 source=("https://download.jetbrains.com/cpp/${_tar_gz}"
         "${pkgbase}.desktop"
         "LICENSE")
+noextract=("${_tar_gz}")
+    #> Integrity
 sha256sums=('SKIP'
             '51c1091a54406a7504d02b737906046dde5d67ba1310ce54ef8530f14d63cc9d'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
-noextract=("${_tar_gz}")
 
 prepare() {
     install -dm755 "${srcdir}"/opt/"${pkgbase}"/
@@ -26,10 +40,7 @@ prepare() {
 }
 
 package_jetbrains-clion() {
-    provides=("${pkgname}")
-    conflicts=("${pkgname}")
-    backup=("opt/${pkgname}/bin/idea.properties"
-            "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
+    #> Dependencies
     optdepends=('jetbrains-clion-jre:   JetBrains custom Java Runtime (Recommended)'
                 'jetbrains-clion-clang: JetBrains packaged LLVM compiler'
                 'jetbrains-clion-cmake: JetBrains packaged CMake build system'
@@ -48,6 +59,12 @@ package_jetbrains-clion() {
                 'gtest:            C++ testing'
                 'swift-language:   Swift programming language support (Also requires the plugin)'
                 'doxygen:          Code documentation generation')
+    #> Package relations
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+    #> Others
+    backup=("opt/${pkgname}/bin/idea.properties"
+            "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
 
     # create dir
     install -dm755 "${pkgdir}"/opt/
@@ -89,7 +106,9 @@ package_jetbrains-clion() {
 }
 
 package_jetbrains-clion-jre() {
-    pkgdesc='JetBrains Runtime (JBR) for CLion - a patched JRE'
+    #> Generic
+    pkgdesc="JetBrains Runtime (JBR) for CLion - a patched JRE"
+    #> Package relations
     provides=("${pkgname}")
     conflicts=("${pkgname}")
 
@@ -100,6 +119,7 @@ package_jetbrains-clion-jre() {
 }
 
 package_jetbrains-clion-clang() {
+    #> Package relations
     provides=("${pkgname}")
     conflicts=("${pkgname}")
 
@@ -110,6 +130,7 @@ package_jetbrains-clion-clang() {
 }
 
 package_jetbrains-clion-cmake() {
+    #> Package relations
     provides=("${pkgname}")
     conflicts=("${pkgname}")
 
@@ -120,6 +141,7 @@ package_jetbrains-clion-cmake() {
 }
 
 package_jetbrains-clion-gdb() {
+    #> Package relations
     provides=("${pkgname}")
     conflicts=("${pkgname}")
 
@@ -130,6 +152,7 @@ package_jetbrains-clion-gdb() {
 }
 
 package_jetbrains-clion-lldb() {
+    #> Package relations
     provides=("${pkgname}")
     conflicts=("${pkgname}")
 

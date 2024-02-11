@@ -1,24 +1,38 @@
 # Maintainer: Kitty Panics
 
+    #> Package name
 pkgbase=jetbrains-intellij-idea
-pkgname=(${pkgbase} ${pkgbase}-jre)
-pkgver=2023.3.2
+pkgname=("${pkgbase}" "${pkgbase}"-jre)
+    #> Version
+pkgver=2023.3.3
 pkgrel=1
-url="https://www.jetbrains.com/idea/"
+#epoch=1
+    #> Generic
 pkgdesc="A cross-platform Java and Kotlin IDE by JetBrains."
 arch=('x86_64')
+url="https://www.jetbrains.com/idea"
 license=('custom:jetbrains')
+    #> Dependencies
 depends=('nspr' 'nss' 'pcre' 'alsa-lib')
 makedepends=('rsync')
+#optdepends=('')
+    #> Package relations
+#provides=("${pkgname}")
+#conflicts=("${pkgname}")
+    #> Others
+#backup=("")
 options=('!strip')
+#install=xyz.install
+    #> Sources
 _tar_gz="ideaIU-$pkgver.tar.gz"
 source=("https://download.jetbrains.com/idea/${_tar_gz}"
         "${pkgbase}.desktop"
         "LICENSE")
+noextract=("${_tar_gz}")
+    #> Integrity
 sha256sums=('SKIP'
             '38a58a300937edc825463f9e4a9d43e782276e9979606046c8be9d466ea5a594'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
-noextract=("${_tar_gz}")
 
 prepare() {
     install -dm755 "${srcdir}"/opt/"${pkgbase}"/
@@ -26,10 +40,7 @@ prepare() {
 }
 
 package_jetbrains-intellij-idea() {
-    provides=("${pkgname}")
-    conflicts=("${pkgname}")
-    backup=("opt/${pkgname}/bin/idea.properties"
-            "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
+    #> Dependencies
     optdepends=('jetbrains-intellij-idea-jre: JetBrains custom JRE (Recommended)'
                 'java-runtime:     JRE - Required if jetbrains-intellij-idea-jre is not installed'
                 'libdbusmenu-glib: For global menu support'
@@ -38,6 +49,12 @@ package_jetbrains-intellij-idea() {
                 'ant:              Build system'
                 'gradle:           Build system'
                 'maven:            Build system')
+    #> Package relations
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+    #> Others
+    backup=("opt/${pkgname}/bin/idea.properties"
+            "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
 
     # create dir
     install -dm755 "${pkgdir}"/opt/
@@ -82,7 +99,9 @@ package_jetbrains-intellij-idea() {
 }
 
 package_jetbrains-intellij-idea-jre() {
-    pkgdesc='JetBrains Runtime (JBR) for IntelliJ IDEA - a patched JRE'
+    #> Generic
+    pkgdesc="JetBrains Runtime (JBR) for IntelliJ IDEA - a patched JRE"
+    #> Package relations
     provides=("${pkgname}")
     conflicts=("${pkgname}")
 

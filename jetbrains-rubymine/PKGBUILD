@@ -1,24 +1,38 @@
 # Maintainer: Kitty Panics
 
+    #> Package name
 pkgbase=jetbrains-rubymine
-pkgname=(${pkgbase} ${pkgbase}-jre)
-pkgver=2023.3.2
+pkgname=("${pkgbase}" "${pkgbase}"-jre)
+    #> Version
+pkgver=2023.3.3
 pkgrel=1
-url="https://www.jetbrains.com/ruby/"
+#epoch=1
+    #> Generic
 pkgdesc="A cross-platform Ruby IDE by JetBrains."
 arch=('x86_64')
+url="https://www.jetbrains.com/ruby"
 license=('custom:jetbrains')
+    #> Dependencies
 depends=('nspr' 'nss' 'pcre' 'alsa-lib')
 makedepends=('rsync')
+#optdepends=('')
+    #> Package relations
+#provides=("${pkgname}")
+#conflicts=("${pkgname}")
+    #> Others
+#backup=("")
 options=('!strip')
+#install=xyz.install
+    #> Sources
 _tar_gz="RubyMine-${pkgver}.tar.gz"
 source=("https://download.jetbrains.com/ruby/${_tar_gz}"
         "${pkgbase}.desktop"
         "LICENSE")
+noextract=("${_tar_gz}")
+    #> Integrity
 sha256sums=('SKIP'
             '08d68bb08aec059688753b2e33a7539006a633472ffc4bfe99b84c414a8a7759'
             'c37db68dbedb20617a23cf1299cd95e7f114f019ff7f44877409cef916ff6ab1')
-noextract=("${_tar_gz}")
 
 prepare() {
     install -dm755 "${srcdir}"/opt/"${pkgbase}"/
@@ -26,16 +40,19 @@ prepare() {
 }
 
 package_jetbrains-rubymine() {
-    provides=("${pkgname}")
-    conflicts=("${pkgname}")
-    backup=("opt/${pkgname}/bin/idea.properties"
-            "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
+    #> Dependencies
     optdepends=('jetbrains-rubymine-jre: JetBrains custom Java Runtime (Recommended)'
                 'java-runtime:     JRE - Required if jetbrains-rubymine-jre is not installed'
                 'libdbusmenu-glib: For global menu support'
                 'gnome-keyring:    Save login/deployment credentials safely'
                 'java-openjfx:     Rendering Markdown files'
                 'ruby:             Ruby run/debug support')
+    #> Package relations
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+    #> Others
+    backup=("opt/${pkgname}/bin/idea.properties"
+            "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
 
     # create dir
     install -dm755 "${pkgdir}"/opt/
@@ -73,7 +90,9 @@ package_jetbrains-rubymine() {
 }
 
 package_jetbrains-rubymine-jre() {
-    pkgdesc='JetBrains Runtime (JBR) for RubyMine - a patched JRE'
+    #> Generic
+    pkgdesc="JetBrains Runtime (JBR) for RubyMine - a patched JRE"
+    #> Package relations
     provides=("${pkgname}")
     conflicts=("${pkgname}")
 
