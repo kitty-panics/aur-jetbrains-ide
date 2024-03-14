@@ -4,7 +4,7 @@
 pkgbase=jetbrains-rider
 pkgname=("${pkgbase}" "${pkgbase}"-jre)
     #> Version
-pkgver=2023.3.3
+pkgver=2023.3.4
 pkgrel=1
 #epoch=1
     #> Generic
