@@ -1,0 +1,108 @@
+# Maintainer: Kitty Panics
+
+    #> Package name
+pkgbase=google-android-studio
+pkgname=("${pkgbase}" "${pkgbase}"-jre)
+    #> Version
+pkgver=2023.2.1.24
+pkgrel=1
+#epoch=1
+    #> Generic
+pkgdesc="An integrated development environment for Google's Android OS."
+arch=('x86_64')
+url="https://developer.android.com/studio"
+license=('unknown')
+    #> Dependencies
+#depends=('')
+makedepends=('rsync')
+#optdepends=('')
+    #> Package relations
+#provides=("${pkgname}")
+#conflicts=("${pkgname}")
+    #> Others
+#backup=("")
+#options=('')
+#install=xyz.install
+    #> Sources
+_tar_gz="android-studio-${pkgver}-linux.tar.gz"
+source=("https://dl.google.com/dl/android/studio/ide-zips/${pkgver}/${_tar_gz}"
+        "${pkgbase}.desktop"
+        "LICENSE")
+#noextract=("${_tar_gz}")
+    #> Integrity
+sha256sums=('SKIP'
+            '77a99e7e9ef38e516cfc48c2c969fac1c9bfc741e343cd8c7a5a57ec2a56a4d3'
+            'f8e179553438e93758c564b6f788db3c4cf1124898899437d36583009779d1fb')
+
+#prepare() {
+#    install -dm755 "${srcdir}"/opt/"${pkgbase}"/
+#    bsdtar --strip-components 1 -xf "${_tar_gz}" -C "${srcdir}"/opt/"${pkgbase}"
+#}
+
+package_google-android-studio() {
+    #> Dependencies
+    optdepends=('google-android-studio-jre: JetBrains custom JRE (Recommended)'
+                'libgl: Emulator support'
+                'ncurses5-compat-libs: Native debugger support')
+    #> Package relations
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+    #> Others
+    backup=("opt/${pkgname}/bin/idea.properties"
+            "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
+
+    # create dir
+    install -dm755 "${pkgdir}"/opt/"${pkgname}"/
+    install -dm755 "${pkgdir}"/usr/bin/
+    install -dm755 "${pkgdir}"/usr/share/applications/
+    install -dm755 "${pkgdir}"/usr/share/doc/"${pkgname}"/
+    install -dm755 "${pkgdir}"/usr/share/icons/hicolor/{128x128,scalable}/apps/
+    install -dm755 "${pkgdir}"/usr/share/pixmaps/
+    install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"/
+
+    # package files
+    rsync -rtl "${srcdir}"/android-studio/ "${pkgdir}"/opt/"${pkgname}" \
+          --exclude=jbr --exclude=arm64-v8a --exclude=armeabi-v7a
+    # /usr/bin/
+    ln -s /opt/"${pkgbase}"/bin/"${pkgbase##*-}".sh \
+          "${pkgdir}"/usr/bin/"${pkgname}"
+
+    # .desktop
+    install -Dm644 "${srcdir}"/"${pkgname}".desktop \
+                   "${pkgdir}"/usr/share/applications/"${pkgname}".desktop
+    # doc
+    ln -s /opt/"${pkgname}"/Install-Linux-tar.txt \
+          "${pkgdir}"/usr/share/doc/"${pkgname}"/
+    ln -s /opt/"${pkgname}"/NOTICE.txt \
+          "${pkgdir}"/usr/share/doc/"${pkgname}"/
+    # icons/hicolor
+    install -Dm644 "${pkgdir}"/opt/"${pkgname}"/bin/"${pkgbase##*-}".png \
+                   "${pkgdir}"/usr/share/icons/hicolor/128x128/apps/"${pkgname}".png
+    install -Dm644 "${pkgdir}"/opt/"${pkgname}"/bin/"${pkgbase##*-}".svg \
+                   "${pkgdir}"/usr/share/icons/hicolor/scalable/apps/"${pkgname}".svg
+    # pixmaps
+    install -Dm644 "${pkgdir}"/opt/"${pkgname}"/bin/"${pkgbase##*-}".svg \
+                   "${pkgdir}"/usr/share/pixmaps/"${pkgname}".svg
+    # licenses
+    install -Dm644 "${srcdir}"/LICENSE \
+                   "${pkgdir}"/usr/share/licenses/"${pkgname}"/LICENSE
+    ln -s /opt/"${pkgname}"/license \
+          "${pkgdir}"/usr/share/licenses/"${pkgname}"/
+    ln -s /opt/"${pkgname}"/LICENSE.txt \
+          "${pkgdir}"/usr/share/licenses/"${pkgname}"/
+}
+
+package_google-android-studio-jre() {
+    #> Generic
+    pkgdesc="JetBrains Runtime (JBR) for Android Studio - a patched JRE"
+    #> Package relations
+    provides=("${pkgname}")
+    conflicts=("${pkgname}")
+
+    # create dir
+    install -dm755 "${pkgdir}"/opt/"${pkgbase}"/
+
+    # pkg files
+    cp -a "${srcdir}"/android-studio/jbr \
+          "${pkgdir}"/opt/"${pkgbase}"/
+}

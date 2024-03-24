@@ -24,6 +24,7 @@
 本仓库提供了两种版本的 JetBrains IDE 打包脚本，并且不与 [AUR] 中相关的包相冲突。
 
 + 跟随官网不断更新
+    - google-android-studio   `v2023.2.1.24`
     - jetbrains-clion         `v2023.3.4`
     - jetbrains-datagrip      `v2023.3.4`
     - jetbrains-dataspell     `v2023.3.4`

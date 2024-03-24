@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Google Android Studio
+Comment=An IDE for Google's Android OS
+Exec=google-android-studio %f
+Icon=google-android-studio
+Terminal=false
+Categories=Development;IDE;
+StartupWMClass=google-android-studio
