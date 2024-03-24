@@ -66,7 +66,7 @@ package_jetbrains-clion() {
     backup=("opt/${pkgname}/bin/idea.properties"
             "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
 
-    # create dir
+    # mkdir
     install -dm755 "${pkgdir}"/opt/
     install -dm755 "${pkgdir}"/usr/bin/
     install -dm755 "${pkgdir}"/usr/share/applications/
@@ -75,14 +75,14 @@ package_jetbrains-clion() {
     install -dm755 "${pkgdir}"/usr/share/pixmaps/
     install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"/
 
-    # package files
+    # pkg files
     rsync -rtl "${srcdir}"/opt "${pkgdir}" \
           --exclude=/opt/"${pkgname}"/jbr \
           --exclude=/opt/"${pkgname}"/bin/clang \
           --exclude=/opt/"${pkgname}"/bin/cmake \
           --exclude=/opt/"${pkgname}"/bin/gdb \
           --exclude=/opt/"${pkgname}"/bin/lldb
-    # /usr/bin/
+    # bin
     ln -s /opt/"${pkgname}"/bin/"${pkgbase##*-}".sh \
           "${pkgdir}"/usr/bin/"${pkgname}"
 
@@ -92,7 +92,7 @@ package_jetbrains-clion() {
     # doc
     ln -s /opt/"${pkgname}"/help \
           "${pkgdir}"/usr/share/doc/"${pkgname}"
-    # icons/hicolor
+    # icons
     install -Dm644 "${pkgdir}"/opt/"${pkgname}"/bin/"${pkgbase##*-}".png \
                    "${pkgdir}"/usr/share/icons/hicolor/128x128/apps/"${pkgname}".png
     install -Dm644 "${pkgdir}"/opt/"${pkgname}"/bin/"${pkgbase##*-}".svg \
@@ -112,9 +112,10 @@ package_jetbrains-clion-jre() {
     provides=("${pkgname}")
     conflicts=("${pkgname}")
 
-    # create dir
+    # mkdir
     install -dm755 "${pkgdir}"/opt/"${pkgbase}"/
-    # package files
+
+    # pkg files
     rsync -rtl "${srcdir}"/opt/"${pkgbase}"/jbr "${pkgdir}"/opt/"${pkgbase}"
 }
 
@@ -123,9 +124,10 @@ package_jetbrains-clion-clang() {
     provides=("${pkgname}")
     conflicts=("${pkgname}")
 
-    # create dir
+    # mkdir
     install -dm755 "${pkgdir}"/opt/"${pkgbase}"/bin/
-    # package files
+
+    # pkg files
     rsync -rtl "${srcdir}"/opt/"${pkgbase}"/bin/clang "${pkgdir}"/opt/"${pkgbase}"/bin
 }
 
@@ -134,9 +136,10 @@ package_jetbrains-clion-cmake() {
     provides=("${pkgname}")
     conflicts=("${pkgname}")
 
-    # create dir
+    # mkdir
     install -dm755 "${pkgdir}"/opt/"${pkgbase}"/bin/
-    # package files
+
+    # pkg files
     rsync -rtl "${srcdir}"/opt/"${pkgbase}"/bin/cmake "${pkgdir}"/opt/"${pkgbase}"/bin
 }
 
@@ -145,9 +148,10 @@ package_jetbrains-clion-gdb() {
     provides=("${pkgname}")
     conflicts=("${pkgname}")
 
-    # create dir
+    # mkdir
     install -dm755 "${pkgdir}"/opt/"${pkgbase}"/bin/
-    # package files
+
+    # pkg files
     rsync -rtl "${srcdir}"/opt/"${pkgbase}"/bin/gdb "${pkgdir}"/opt/"${pkgbase}"/bin
 }
 
@@ -156,8 +160,9 @@ package_jetbrains-clion-lldb() {
     provides=("${pkgname}")
     conflicts=("${pkgname}")
 
-    # create dir
+    # mkdir
     install -dm755 "${pkgdir}"/opt/"${pkgbase}"/bin/
-    # package files
+
+    # pkg files
     rsync -rtl "${srcdir}"/opt/"${pkgbase}"/bin/lldb "${pkgdir}"/opt/"${pkgbase}"/bin
 }

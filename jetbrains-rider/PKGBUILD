@@ -55,7 +55,7 @@ package_jetbrains-rider() {
     backup=("opt/${pkgname}/bin/idea.properties"
             "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
 
-    # create dir
+    # mkdir
     install -dm755 "${pkgdir}"/opt/
     install -dm755 "${pkgdir}"/usr/bin/
     install -dm755 "${pkgdir}"/usr/share/applications/
@@ -64,10 +64,10 @@ package_jetbrains-rider() {
     install -dm755 "${pkgdir}"/usr/share/pixmaps/
     install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"/
 
-    # package files
+    # pkg files
     rsync -rtl "${srcdir}"/opt "${pkgdir}" \
           --exclude=/opt/"${pkgname}"/jbr
-    # /usr/bin/
+    # bin
     ln -s /opt/"${pkgname}"/bin/"${pkgbase##*-}".sh \
           "${pkgdir}"/usr/bin/"${pkgname}"
 
@@ -77,7 +77,7 @@ package_jetbrains-rider() {
     # doc
     ln -s /opt/"${pkgname}"/help \
           "${pkgdir}"/usr/share/doc/"${pkgname}"
-    # icons/hicolor
+    # icons
     install -Dm644 "${pkgdir}"/opt/"${pkgname}"/bin/"${pkgbase##*-}".png \
                    "${pkgdir}"/usr/share/icons/hicolor/128x128/apps/"${pkgname}".png
     install -Dm644 "${pkgdir}"/opt/"${pkgname}"/bin/"${pkgbase##*-}".svg \
@@ -97,8 +97,9 @@ package_jetbrains-rider-jre() {
     provides=("${pkgname}")
     conflicts=("${pkgname}")
 
-    # create dir
+    # mkdir
     install -dm755 "${pkgdir}"/opt/"${pkgbase}"/
-    # package files
+
+    # pkg files
     rsync -rtl "${srcdir}"/opt/"${pkgbase}"/jbr "${pkgdir}"/opt/"${pkgbase}"
 }

@@ -46,7 +46,7 @@ package_google-android-studio() {
     backup=("opt/${pkgname}/bin/idea.properties"
             "opt/${pkgname}/bin/${pkgbase##*-}64.vmoptions")
 
-    # create dir
+    # mkdir
     install -dm755 "${pkgdir}"/opt/"${pkgname}"/
     install -dm755 "${pkgdir}"/usr/bin/
     install -dm755 "${pkgdir}"/usr/share/applications/
@@ -55,10 +55,10 @@ package_google-android-studio() {
     install -dm755 "${pkgdir}"/usr/share/pixmaps/
     install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"/
 
-    # package files
+    # pkg files
     rsync -rtl "${srcdir}"/android-studio/ "${pkgdir}"/opt/"${pkgname}" \
           --exclude=jbr --exclude=arm64-v8a --exclude=armeabi-v7a
-    # /usr/bin/
+    # bin
     ln -s /opt/"${pkgbase}"/bin/"${pkgbase##*-}".sh \
           "${pkgdir}"/usr/bin/"${pkgname}"
 
@@ -70,7 +70,7 @@ package_google-android-studio() {
           "${pkgdir}"/usr/share/doc/"${pkgname}"/
     ln -s /opt/"${pkgname}"/NOTICE.txt \
           "${pkgdir}"/usr/share/doc/"${pkgname}"/
-    # icons/hicolor
+    # icons
     install -Dm644 "${pkgdir}"/opt/"${pkgname}"/bin/"${pkgbase##*-}".png \
                    "${pkgdir}"/usr/share/icons/hicolor/128x128/apps/"${pkgname}".png
     install -Dm644 "${pkgdir}"/opt/"${pkgname}"/bin/"${pkgbase##*-}".svg \
@@ -94,7 +94,7 @@ package_google-android-studio-jre() {
     provides=("${pkgname}")
     conflicts=("${pkgname}")
 
-    # create dir
+    # mkdir
     install -dm755 "${pkgdir}"/opt/"${pkgbase}"/
 
     # pkg files
