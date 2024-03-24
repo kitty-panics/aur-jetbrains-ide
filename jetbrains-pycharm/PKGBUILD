@@ -89,7 +89,7 @@ package_jetbrains-pycharm() {
 
     # package files
     rsync -rtl "${srcdir}"/opt "${pkgdir}" \
-          --exclude=/opt/"${pkgname}"/jbr \
+          --exclude=/opt/"${pkgname}"/jbr
     # /usr/bin/
     ln -s /opt/"${pkgname}"/bin/"${pkgbase##*-}".sh \
           "${pkgdir}"/usr/bin/"${pkgname}"

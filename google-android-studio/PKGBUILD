@@ -34,11 +34,6 @@ sha256sums=('SKIP'
             '77a99e7e9ef38e516cfc48c2c969fac1c9bfc741e343cd8c7a5a57ec2a56a4d3'
             'f8e179553438e93758c564b6f788db3c4cf1124898899437d36583009779d1fb')
 
-#prepare() {
-#    install -dm755 "${srcdir}"/opt/"${pkgbase}"/
-#    bsdtar --strip-components 1 -xf "${_tar_gz}" -C "${srcdir}"/opt/"${pkgbase}"
-#}
-
 package_google-android-studio() {
     #> Dependencies
     optdepends=('google-android-studio-jre: JetBrains custom JRE (Recommended)'
