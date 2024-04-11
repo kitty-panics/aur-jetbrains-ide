@@ -4,7 +4,7 @@
 pkgbase=jetbrains-goland
 pkgname=("${pkgbase}" "${pkgbase}"-jre)
     #> Version
-pkgver=2023.3.5
+pkgver=2023.3.6
 pkgrel=1
 #epoch=1
     #> Generic
