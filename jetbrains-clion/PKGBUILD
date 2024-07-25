@@ -4,7 +4,7 @@
 pkgbase=jetbrains-clion
 pkgname=("${pkgbase}" "${pkgbase}"-jre "${pkgbase}"-clang "${pkgbase}"-cmake "${pkgbase}"-gdb "${pkgbase}"-lldb)
     #> Version
-pkgver=2024.1.1
+pkgver=2024.1.2
 pkgrel=1
 #epoch=1
     #> Generic
