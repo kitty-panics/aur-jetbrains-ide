@@ -25,16 +25,16 @@
 
 + 跟随官网不断更新
     - google-android-studio   `v2023.2.1.24`
-    - jetbrains-clion         `v2024.1.3`
-    - jetbrains-datagrip      `v2024.1.3`
-    - jetbrains-dataspell     `v2024.1.3`
-    - jetbrains-goland        `v2024.1.3`
-    - jetbrains-intellij-idea `v2024.1.3`
-    - jetbrains-phpstorm      `v2024.1.3`
-    - jetbrains-pycharm       `v2024.1.3`
-    - jetbrains-rider         `v2024.1.3`
-    - jetbrains-rubymine      `v2024.1.3`
-    - jetbrains-webstorm      `v2024.1.3`
+    - jetbrains-clion         `v2024.1.4`
+    - jetbrains-datagrip      `v2024.1.4`
+    - jetbrains-dataspell     `v2024.1.4`
+    - jetbrains-goland        `v2024.1.4`
+    - jetbrains-intellij-idea `v2024.1.4`
+    - jetbrains-phpstorm      `v2024.1.4`
+    - jetbrains-pycharm       `v2024.1.4`
+    - jetbrains-rider         `v2024.1.4`
+    - jetbrains-rubymine      `v2024.1.4`
+    - jetbrains-webstorm      `v2024.1.4`
 + 永远停留在 `2021.2.X`
     - [jetbrains-clion-old]         `v2021.2.2`
     - [jetbrains-datagrip-old]      `v2021.2.2`
